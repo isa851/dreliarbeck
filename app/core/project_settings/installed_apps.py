@@ -7,13 +7,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    "jazzmin",
 
-    # Third-party
-    "rest_framework",
-    "django_filters",
-    "drf_spectacular",
-    "corsheaders",
 
     # CKEditor
     "ckeditor",
@@ -23,7 +17,6 @@ INSTALLED_APPS = [
     "django_resized",
 
     # Local apps
-    "apps.base",
-    "apps.cms",
+    "apps.pages",
     "apps.contacts",
 ]

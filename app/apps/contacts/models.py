@@ -1,24 +1,16 @@
 from django.db import models
 
-class AppointmentRequest(models.Model):
-    SOURCE_CHOICES = [
-        ("hero", "Hero button"),
-        ("services", "Service card"),
-        ("quick", "Quick widget"),
-        ("cta", "Final CTA"),
-        ("call", "Call button"),
-        ("other", "Other"),
-    ]
-
-    name = models.CharField(max_length=120, blank=True)
+class BookingRequest(models.Model):
+    name = models.CharField(max_length=120)
     phone = models.CharField(max_length=50)
-    message = models.TextField(blank=True)
-
-    reason = models.CharField(max_length=80, blank=True) 
-    source = models.CharField(max_length=20, choices=SOURCE_CHOICES, default="other")
-
+    service = models.CharField(max_length=120, blank=True)
+    comment = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    is_processed = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "Заявка"
+        verbose_name_plural = "Заявки"
+        ordering = ["-created_at"]
 
     def __str__(self):
-        return f"{self.phone} ({self.source})"
+        return f"{self.name} ({self.phone})"

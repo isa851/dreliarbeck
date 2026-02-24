@@ -1,0 +1,127 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>{% block title %}Dr. Eliyar{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Стоматологический центр Dr. Eliyar{% endblock %}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/components.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/animations.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="{% url 'home' %}" class="logo">
+        <span class="logo__icon"><i class="fa-solid fa-tooth"></i></span>
+        Dr<span class="logo__dot">.</span> Eliyar
+      </a>
+
+      <nav class="nav">
+        <ul class="nav__menu" id="navMenu">
+          <li><a href="{% url 'doctor' %}" class="nav__link {% if active_page == 'doctor' %}active{% endif %}">О клинике</a></li>
+          <li><a href="{% url 'services' %}" class="nav__link {% if active_page == 'services' %}active{% endif %}">Услуги</a></li>
+          <li><a href="{% url 'tour' %}" class="nav__link {% if active_page == 'tour' %}active{% endif %}">360° тур</a></li>
+          <li><a href="{% url 'cases' %}" class="nav__link {% if active_page == 'cases' %}active{% endif %}">Кейсы</a></li>
+          <li><a href="{% url 'reviews' %}" class="nav__link {% if active_page == 'reviews' %}active{% endif %}">Отзывы</a></li>
+          <li><a href="{% url 'contacts' %}" class="nav__link {% if active_page == 'contacts' %}active{% endif %}">Контакты</a></li>
+        </ul>
+
+        <div class="nav__actions">
+          <label class="toggle" id="fearToggle">
+            <input type="checkbox" id="fearModeCheckbox">
+            <span class="toggle__track"></span>
+            <span class="toggle__label"><i class="fa-regular fa-face-frown"></i> Я боюсь</span>
+          </label>
+          <a href="{% url 'contacts' %}#booking" class="btn btn--primary btn--sm">Записаться</a>
+        </div>
+
+        <button class="nav__burger" id="burgerBtn" aria-label="Меню">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="{% url 'home' %}" class="mobile-menu__link">Главная</a>
+    <a href="{% url 'doctor' %}" class="mobile-menu__link">О клинике</a>
+    <a href="{% url 'services' %}" class="mobile-menu__link">Услуги</a>
+    <a href="{% url 'tour' %}" class="mobile-menu__link">360° тур</a>
+    <a href="{% url 'cases' %}" class="mobile-menu__link">Кейсы</a>
+    <a href="{% url 'reviews' %}" class="mobile-menu__link">Отзывы</a>
+    <a href="{% url 'contacts' %}" class="mobile-menu__link">Контакты</a>
+  </div>
+
+  {% block content %}{% endblock %}
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="{% url 'home' %}" class="logo">
+            <span class="logo__icon"><i class="fa-solid fa-tooth"></i></span>
+            Dr<span class="logo__dot">.</span> Eliyar
+          </a>
+          <p>Стоматологический центр премиум-класса в Бишкеке.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="footer__social-link" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer__title">Навигация</div>
+          <ul class="footer__links">
+            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li><a href="{% url 'services' %}">Услуги</a></li>
+            <li><a href="{% url 'doctor' %}">О клинике</a></li>
+            <li><a href="{% url 'cases' %}">Кейсы</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer__title">Пациентам</div>
+          <ul class="footer__links">
+            <li><a href="{% url 'reviews' %}">Отзывы</a></li>
+            <li><a href="{% url 'tour' %}">360° тур</a></li>
+            <li><a href="{% url 'contacts' %}">Контакты</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer__title">Контакты</div>
+          <ul class="footer__links">
+            <li><a href="tel:+996555123456"><i class="fa-solid fa-phone"></i> +996 (555) 12-34-56</a></li>
+            <li><i class="fa-solid fa-location-dot"></i> г. Бишкек, ул. Киевская 77</li>
+            <li><i class="fa-regular fa-clock"></i> Пн–Сб: 09:00–20:00</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2026 Dr. Eliyar — Все права защищены</span>
+        <span>Сделано с <i class="fa-solid fa-heart" style="color:#ef4444;"></i> в Бишкеке</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <script src="{% static 'assets/js/fear-mode.js' %}"></script>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

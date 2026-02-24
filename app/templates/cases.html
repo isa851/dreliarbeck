@@ -1,0 +1,332 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кейсы до/после — Dr. Eliyar Стоматология</title>
+    <meta name="description"
+        content="Реальные результаты работы стоматологического центра Dr. Eliyar. Фотографии до и после лечения.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/components.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animations.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+</head>
+
+<body>
+    <header class="header" id="header">
+        <div class="header__inner">
+            <a href="{% url 'index' %}" class="logo"><span class="logo__icon"><i class="fa-solid fa-tooth"></i></span> Dr<span
+                    class="logo__dot">.</span> Eliyar</a>
+            <nav class="nav">
+                <ul class="nav__menu" id="navMenu">
+                    <li><a href="{% url 'doctor' %}" class="nav__link">О клинике</a></li>
+                    <li><a href="{% url 'services' %}" class="nav__link">Услуги</a></li>
+                    <li><a href="{% url 'tour' %}" class="nav__link">360° тур</a></li>
+                    <li><a href="{% url 'cases' %}" class="nav__link active">Кейсы</a></li>
+                    <li><a href="{% url 'reviews' %}" class="nav__link">Отзывы</a></li>
+                    <li><a href="{% url 'contacts' %}" class="nav__link">Контакты</a></li>
+                </ul>
+                <div class="nav__actions">
+                    <label class="toggle" id="fearToggle"><input type="checkbox" id="fearModeCheckbox"><span
+                            class="toggle__track"></span><span class="toggle__label"><i
+                                class="fa-regular fa-face-frown"></i> Я боюсь</span></label>
+                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Записаться</a>
+                </div>
+                <button class="nav__burger" id="burgerBtn"
+                    aria-label="Меню"><span></span><span></span><span></span></button>
+            </nav>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="{% url 'doctor' %}" class="mobile-menu__link">О клинике</a>
+        <a href="{% url 'services' %}" class="mobile-menu__link">Услуги</a>
+        <a href="{% url 'tour' %}" class="mobile-menu__link">360° тур</a>
+        <a href="{% url 'cases' %}" class="mobile-menu__link">Кейсы</a>
+        <a href="{% url 'reviews' %}" class="mobile-menu__link">Отзывы</a>
+        <a href="{% url 'contacts' %}" class="mobile-menu__link">Контакты</a>
+    </div>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="breadcrumbs"><a href="{% url 'index' %}">Главная</a><span
+                    class="breadcrumbs__sep">/</span><span>Кейсы</span></div>
+            <h1>Результаты нашей работы</h1>
+            <p>Каждый кейс — это реальная история восстановления улыбки. Двигайте ползунок, чтобы увидеть разницу.</p>
+        </div>
+    </section>
+
+    <!-- Calm block for fear mode -->
+    <div class="container">
+        <div class="calm-text" data-calm
+            style="padding:var(--space-lg) var(--space-xl);background:rgba(125,211,192,0.08);border-radius:var(--radius-lg);border:1px solid rgba(125,211,192,0.15);margin:var(--space-xl) 0;">
+            <i class="fa-solid fa-heart" style="color:var(--color-calm-accent);"></i> Не переживайте — все процедуры
+            проходят <b>безболезненно</b>. На фото вы видите только финальный результат, а весь процесс лечения — это
+            спокойная атмосфера с заботой о вашем комфорте.
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <!-- Case 1 — Виниры -->
+            <div class="case-block reveal">
+                <div class="case-block__visual">
+                    <div class="ba-container" data-ba-slider>
+                        <div class="ba-before"><img
+                                src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=700&h=400&fit=crop&q=80"
+                                alt="До — виниры" loading="lazy"></div>
+                        <div class="ba-after"><img
+                                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=700&h=400&fit=crop&q=80"
+                                alt="После — виниры" loading="lazy"></div>
+                        <div class="ba-handle"></div>
+                        <span class="case-card__label case-card__label--before">До</span>
+                        <span class="case-card__label case-card__label--after">После</span>
+                    </div>
+                </div>
+                <div class="case-block__info">
+                    <span class="badge badge--accent">Виниры E-max</span>
+                    <h3>Полная эстетическая реставрация улыбки</h3>
+                    <p>Пациентка обратилась с жалобами на неровный цвет и форму зубов. Было установлено 10 керамических
+                        виниров E-max, которые полностью воссоздали естественную белоснежную улыбку.</p>
+                    <div class="case-block__meta">
+                        <span><i class="fa-regular fa-clock"></i> Срок: 2 недели</span>
+                        <span><i class="fa-solid fa-tooth"></i> 10 виниров</span>
+                        <span><i class="fa-solid fa-star"></i> Результат: 5/5</span>
+                    </div>
+                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Хочу так же</a>
+                </div>
+            </div>
+
+            <!-- Case 2 — Имплантация -->
+            <div class="case-block case-block--reverse reveal">
+                <div class="case-block__visual">
+                    <div class="ba-container" data-ba-slider>
+                        <div class="ba-before"><img
+                                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=700&h=400&fit=crop&q=80"
+                                alt="До — имплантация" loading="lazy"></div>
+                        <div class="ba-after"><img
+                                src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=700&h=400&fit=crop&q=80"
+                                alt="После — имплантация" loading="lazy"></div>
+                        <div class="ba-handle"></div>
+                        <span class="case-card__label case-card__label--before">До</span>
+                        <span class="case-card__label case-card__label--after">После</span>
+                    </div>
+                </div>
+                <div class="case-block__info">
+                    <span class="badge badge--accent">Имплантация</span>
+                    <h3>Восстановление жевательных зубов</h3>
+                    <p>Пациент потерял 3 жевательных зуба. Мы установили 3 имплантата Straumann и коронки из диоксида
+                        циркония. Полное восстановление функции жевания за 3 месяца.</p>
+                    <div class="case-block__meta">
+                        <span><i class="fa-regular fa-clock"></i> Срок: 3 месяца</span>
+                        <span><i class="fa-solid fa-tooth"></i> 3 имплантата</span>
+                        <span><i class="fa-solid fa-star"></i> Результат: 5/5</span>
+                    </div>
+                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Хочу так же</a>
+                </div>
+            </div>
+
+            <!-- Case 3 — Отбеливание -->
+            <div class="case-block reveal">
+                <div class="case-block__visual">
+                    <div class="ba-container" data-ba-slider>
+                        <div class="ba-before"><img
+                                src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=700&h=400&fit=crop&q=80"
+                                alt="До — отбеливание" loading="lazy"></div>
+                        <div class="ba-after"><img
+                                src="https://images.unsplash.com/photo-1581585095728-17dfddf2acd8?w=700&h=400&fit=crop&q=80"
+                                alt="После — отбеливание" loading="lazy"></div>
+                        <div class="ba-handle"></div>
+                        <span class="case-card__label case-card__label--before">До</span>
+                        <span class="case-card__label case-card__label--after">После</span>
+                    </div>
+                </div>
+                <div class="case-block__info">
+                    <span class="badge badge--accent">Отбеливание Zoom</span>
+                    <h3>Профессиональное отбеливание на 6 тонов</h3>
+                    <p>Пациентка хотела более белую улыбку к свадьбе. Провели профессиональную чистку Air-Flow и
+                        отбеливание Zoom 4 за одно посещение. Результат — улыбка мечты за 1 день.</p>
+                    <div class="case-block__meta">
+                        <span><i class="fa-regular fa-clock"></i> Срок: 1 день</span>
+                        <span><i class="fa-solid fa-tooth"></i> Все зубы</span>
+                        <span><i class="fa-solid fa-star"></i> Результат: 5/5</span>
+                    </div>
+                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Хочу так же</a>
+                </div>
+            </div>
+
+            <!-- Case 4 — Коронки -->
+            <div class="case-block case-block--reverse reveal">
+                <div class="case-block__visual">
+                    <div class="ba-container" data-ba-slider>
+                        <div class="ba-before"><img
+                                src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=700&h=400&fit=crop&q=80"
+                                alt="До — коронки" loading="lazy"></div>
+                        <div class="ba-after"><img
+                                src="https://images.unsplash.com/photo-1612776572997-76cc42e058c3?w=700&h=400&fit=crop&q=80"
+                                alt="После — коронки" loading="lazy"></div>
+                        <div class="ba-handle"></div>
+                        <span class="case-card__label case-card__label--before">До</span>
+                        <span class="case-card__label case-card__label--after">После</span>
+                    </div>
+                </div>
+                <div class="case-block__info">
+                    <span class="badge badge--accent">Коронки Zirconia</span>
+                    <h3>Реставрация передних зубов коронками</h3>
+                    <p>Старые металлокерамические коронки потемнели и выглядели неестественно. Заменили на 4 коронки из
+                        диоксида циркония — идеальная эстетика и прочность.</p>
+                    <div class="case-block__meta">
+                        <span><i class="fa-regular fa-clock"></i> Срок: 10 дней</span>
+                        <span><i class="fa-solid fa-tooth"></i> 4 коронки</span>
+                        <span><i class="fa-solid fa-star"></i> Результат: 5/5</span>
+                    </div>
+                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Хочу так же</a>
+                </div>
+            </div>
+
+            <!-- Case 5 — Ортодонтия -->
+            <div class="case-block reveal">
+                <div class="case-block__visual">
+                    <div class="ba-container" data-ba-slider>
+                        <div class="ba-before"><img
+                                src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=700&h=400&fit=crop&q=80"
+                                alt="До — элайнеры" loading="lazy"></div>
+                        <div class="ba-after"><img
+                                src="https://images.unsplash.com/photo-1607990281513-2c110a25e43c?w=700&h=400&fit=crop&q=80"
+                                alt="После — элайнеры" loading="lazy"></div>
+                        <div class="ba-handle"></div>
+                        <span class="case-card__label case-card__label--before">До</span>
+                        <span class="case-card__label case-card__label--after">После</span>
+                    </div>
+                </div>
+                <div class="case-block__info">
+                    <span class="badge badge--accent">Элайнеры</span>
+                    <h3>Коррекция прикуса без брекетов</h3>
+                    <p>Пациентка стеснялась неровных зубов. Предложили прозрачные элайнеры — незаметное лечение во время
+                        работы. За 8 месяцев зубы встали в идеально ровный ряд.</p>
+                    <div class="case-block__meta">
+                        <span><i class="fa-regular fa-clock"></i> Срок: 8 месяцев</span>
+                        <span><i class="fa-solid fa-tooth"></i> 14 кап</span>
+                        <span><i class="fa-solid fa-star"></i> Результат: 5/5</span>
+                    </div>
+                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Хочу так же</a>
+                </div>
+            </div>
+
+            <!-- Case 6 — Комплексный кейс -->
+            <div class="case-block case-block--reverse reveal">
+                <div class="case-block__visual">
+                    <div class="ba-container" data-ba-slider>
+                        <div class="ba-before"><img
+                                src="https://images.unsplash.com/photo-1614859324967-effd61a0a05e?w=700&h=400&fit=crop&q=80"
+                                alt="До — комплексный кейс" loading="lazy"></div>
+                        <div class="ba-after"><img
+                                src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=700&h=400&fit=crop&q=80"
+                                alt="После — комплексный кейс" loading="lazy"></div>
+                        <div class="ba-handle"></div>
+                        <span class="case-card__label case-card__label--before">До</span>
+                        <span class="case-card__label case-card__label--after">После</span>
+                    </div>
+                </div>
+                <div class="case-block__info">
+                    <span class="badge badge--accent">Полная реабилитация</span>
+                    <h3>Комплексное восстановление: имплантация + виниры</h3>
+                    <p>Сложный кейс: отсутствующие зубы, кариес, проблемы с эстетикой. Провели санацию, установили 2
+                        имплантата и 8 виниров. Результат — полностью новая улыбка и уверенность в себе.</p>
+                    <div class="case-block__meta">
+                        <span><i class="fa-regular fa-clock"></i> Срок: 4 месяца</span>
+                        <span><i class="fa-solid fa-tooth"></i> 2 импл. + 8 виниров</span>
+                        <span><i class="fa-solid fa-star"></i> Результат: 5/5</span>
+                    </div>
+                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Хочу так же</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta-section section--alt">
+        <div class="container reveal">
+            <h2>Хотите такой же результат?</h2>
+            <p>Запишитесь на бесплатную консультацию — мы составим индивидуальный план лечения.</p>
+            <a href="contacts.html#booking" class="btn btn--primary btn--lg">Записаться бесплатно</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="index.html" class="logo"><span class="logo__icon"><i class="fa-solid fa-tooth"></i></span>
+                        Dr<span class="logo__dot">.</span> Eliyar</a>
+                    <p>Стоматологический центр премиум-класса в Бишкеке.</p>
+                    <div class="footer__socials">
+                        <a href="#" class="footer__social-link" aria-label="Instagram"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="footer__social-link" aria-label="WhatsApp"><i
+                                class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" class="footer__social-link" aria-label="Telegram"><i
+                                class="fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer__title">Навигация</div>
+                    <ul class="footer__links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="services.html">Услуги</a></li>
+                        <li><a href="doctor.html">О клинике</a></li>
+                        <li><a href="cases.html">Кейсы</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer__title">Пациентам</div>
+                    <ul class="footer__links">
+                        <li><a href="reviews.html">Отзывы</a></li>
+                        <li><a href="tour.html">360° тур</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer__title">Контакты</div>
+                    <ul class="footer__links">
+                        <li><a href="tel:+996555123456"><i class="fa-solid fa-phone"></i> +996 (555) 12-34-56</a></li>
+                        <li><i class="fa-solid fa-location-dot"></i> г. Бишкек, ул. Киевская 77</li>
+                        <li><i class="fa-regular fa-clock"></i> Пн–Сб: 09:00–20:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom"><span>© 2026 Dr. Eliyar — Все права защищены</span><span>Сделано с <i
+                        class="fa-solid fa-heart" style="color:#ef4444;"></i> в Бишкеке</span></div>
+        </div>
+    </footer>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'assets/js/fear-mode.js' %}"></script>
+    <script>
+        // Before/After Slider Logic
+        document.querySelectorAll('[data-ba-slider]').forEach(slider => {
+            const handle = slider.querySelector('.ba-handle');
+            const afterWrap = slider.querySelector('.ba-after');
+            let isDragging = false;
+            function setPosition(x) {
+                const rect = slider.getBoundingClientRect();
+                let percent = ((x - rect.left) / rect.width) * 100;
+                percent = Math.max(2, Math.min(98, percent));
+                handle.style.left = percent + '%';
+                afterWrap.style.width = percent + '%';
+            }
+            handle.addEventListener('mousedown', (e) => { isDragging = true; e.preventDefault(); });
+            handle.addEventListener('touchstart', (e) => { isDragging = true; }, { passive: true });
+            document.addEventListener('mousemove', (e) => { if (isDragging) setPosition(e.clientX); });
+            document.addEventListener('touchmove', (e) => { if (isDragging) setPosition(e.touches[0].clientX); }, { passive: true });
+            document.addEventListener('mouseup', () => { isDragging = false; });
+            document.addEventListener('touchend', () => { isDragging = false; });
+            slider.addEventListener('click', (e) => { setPosition(e.clientX); });
+        });
+    </script>
+</body>
+
+</html>

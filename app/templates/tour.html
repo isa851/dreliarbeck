@@ -1,0 +1,194 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360° тур по клинике — Dr. Eliyar Стоматология</title>
+    <meta name="description"
+        content="Виртуальный 360° тур по стоматологическому центру Dr. Eliyar в Бишкеке. Посмотрите кабинеты и оборудование, не выходя из дома.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/components.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animations.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+</head>
+
+<body>
+    <header class="header" id="header">
+        <div class="header__inner">
+            <a href="{% url 'index' %}" class="logo"><span class="logo__icon"><i class="fa-solid fa-tooth"></i></span> Dr<span
+                    class="logo__dot">.</span> Eliyar</a>
+            <nav class="nav">
+                <ul class="nav__menu" id="navMenu">
+                    <li><a href="{% url 'doctor' %}" class="nav__link">О клинике</a></li>
+                    <li><a href="{% url 'services' %}" class="nav__link">Услуги</a></li>
+                    <li><a href="{% url 'tour' %}" class="nav__link active">360° тур</a></li>
+                    <li><a href="{% url 'cases' %}" class="nav__link">Кейсы</a></li>
+                    <li><a href="{% url 'reviews' %}" class="nav__link">Отзывы</a></li>
+                    <li><a href="{% url 'contacts' %}" class="nav__link">Контакты</a></li>
+                </ul>
+                <div class="nav__actions">
+                    <label class="toggle" id="fearToggle"><input type="checkbox" id="fearModeCheckbox"><span
+                            class="toggle__track"></span><span class="toggle__label"><i
+                                class="fa-regular fa-face-frown"></i> Я боюсь</span></label>
+                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Записаться</a>
+                </div>
+                <button class="nav__burger" id="burgerBtn"
+                    aria-label="Меню"><span></span><span></span><span></span></button>
+            </nav>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="{% url 'doctor' %}" class="mobile-menu__link">О клинике</a>
+        <a href="{% url 'services' %}" class="mobile-menu__link">Услуги</a>
+        <a href="{% url 'tour' %}" class="mobile-menu__link">360° тур</a>
+        <a href="{% url 'cases' %}" class="mobile-menu__link">Кейсы</a>
+        <a href="{% url 'reviews' %}" class="mobile-menu__link">Отзывы</a>
+        <a href="{% url 'contacts' %}" class="mobile-menu__link">Контакты</a>
+    </div>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="breadcrumbs"><a href="{% url 'index' %}">Главная</a><span class="breadcrumbs__sep">/</span><span>360°
+                    тур</span></div>
+            <h1>Виртуальный тур по клинике</h1>
+            <p>Исследуйте нашу клинику виртуально — от ресепшн до хирургического кабинета</p>
+            <p class="calm-text" data-calm><i class="fa-solid fa-heart" style="color:var(--color-calm-accent);"></i>
+                Знакомство с пространством до визита поможет вам чувствовать себя увереннее и спокойнее.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <!-- Location Switcher -->
+            <div class="tour-switcher reveal"
+                style="display:flex;gap:var(--space-sm);flex-wrap:wrap;margin-bottom:var(--space-xl);justify-content:center;">
+                <button class="btn btn--primary btn--sm tour-loc active" data-loc="reception"><i
+                        class="fa-solid fa-door-open"></i> Ресепшн</button>
+                <button class="btn btn--outline btn--sm tour-loc" data-loc="cabinet1"><i class="fa-solid fa-chair"></i>
+                    Кабинет 1</button>
+                <button class="btn btn--outline btn--sm tour-loc" data-loc="cabinet2"><i
+                        class="fa-solid fa-microscope"></i> Кабинет 2</button>
+                <button class="btn btn--outline btn--sm tour-loc" data-loc="surgery"><i class="fa-solid fa-syringe"></i>
+                    Хирургия</button>
+                <button class="btn btn--outline btn--sm tour-loc" data-loc="xray"><i class="fa-solid fa-x-ray"></i>
+                    Рентген</button>
+                <button class="btn btn--outline btn--sm tour-loc" data-loc="sterilization"><i
+                        class="fa-solid fa-shield-virus"></i> Стерилизация</button>
+            </div>
+
+            <!-- Tour Viewport -->
+            <div class="tour-viewport reveal" id="tourViewport"
+                style="width:100%;height:500px;border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--color-border-dark);position:relative;">
+                <img id="tourImage"
+                    src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1200&h=600&fit=crop&q=80"
+                    alt="Виртуальный тур — ресепшн" style="width:100%;height:100%;object-fit:cover;">
+                <div
+                    style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);">
+                    <div style="text-align:center;color:#fff;">
+                        <div style="font-size:48px;margin-bottom:var(--space-md);"><i
+                                class="fa-solid fa-vr-cardboard"></i></div>
+                        <div style="font-size:18px;font-weight:600;">360° тур будет здесь</div>
+                        <div style="font-size:14px;opacity:.7;margin-top:var(--space-sm);">Встроенный iframe с панорамой
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--alt">
+        <div class="container">
+            <div class="section__header reveal">
+                <h2>Что внутри клиники</h2>
+                <p>Каждая зона спроектирована для вашего комфорта</p>
+            </div>
+            <div class="grid grid--3 reveal-stagger">
+                <div class="card">
+                    <div class="card__icon"><i class="fa-solid fa-couch"></i></div>
+                    <div class="card__title">Уютная зона ожидания</div>
+                    <div class="card__text">Мягкие кресла, ароматный кофе и Wi-Fi. Ожидание — тоже часть приятного
+                        опыта.</div>
+                </div>
+                <div class="card">
+                    <div class="card__icon"><i class="fa-solid fa-desktop"></i></div>
+                    <div class="card__title">Современные кабинеты</div>
+                    <div class="card__text">Каждый кабинет оснащён микроскопом, монитором для пациента и удобным
+                        креслом.</div>
+                </div>
+                <div class="card">
+                    <div class="card__icon"><i class="fa-solid fa-pump-medical"></i></div>
+                    <div class="card__title">Стерилизационная</div>
+                    <div class="card__text">Автоклав класса B, ультразвуковая мойка. Полный цикл стерилизации по
+                        европейским стандартам.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta-section">
+        <div class="container reveal">
+            <h2>Хотите увидеть клинику лично?</h2>
+            <p>Запишитесь на бесплатную консультацию — мы покажем вам всё и ответим на любые вопросы.</p>
+            <a href="contacts.html#booking" class="btn btn--primary btn--lg">Записаться на визит</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="index.html" class="logo"><span class="logo__icon"><i class="fa-solid fa-tooth"></i></span>
+                        Dr<span class="logo__dot">.</span> Eliyar</a>
+                    <p>Стоматологический центр премиум-класса в Бишкеке.</p>
+                    <div class="footer__socials">
+                        <a href="#" class="footer__social-link" aria-label="Instagram"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="footer__social-link" aria-label="WhatsApp"><i
+                                class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" class="footer__social-link" aria-label="Telegram"><i
+                                class="fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer__title">Навигация</div>
+                    <ul class="footer__links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="services.html">Услуги</a></li>
+                        <li><a href="doctor.html">О клинике</a></li>
+                        <li><a href="cases.html">Кейсы</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer__title">Пациентам</div>
+                    <ul class="footer__links">
+                        <li><a href="reviews.html">Отзывы</a></li>
+                        <li><a href="tour.html">360° тур</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer__title">Контакты</div>
+                    <ul class="footer__links">
+                        <li><a href="tel:+996555123456"><i class="fa-solid fa-phone"></i> +996 (555) 12-34-56</a></li>
+                        <li><i class="fa-solid fa-location-dot"></i> г. Бишкек, ул. Киевская 77</li>
+                        <li><i class="fa-regular fa-clock"></i> Пн–Сб: 09:00–20:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom"><span>© 2026 Dr. Eliyar — Все права защищены</span><span>Сделано с <i
+                        class="fa-solid fa-heart" style="color:#ef4444;"></i> в Бишкеке</span></div>
+        </div>
+    </footer>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'assets/js/tour.js' %}"></script>
+    <script src="{% static 'assets/js/fear-mode.js' %}"></script>
+</body>
+
+</html>

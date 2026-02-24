@@ -1,0 +1,353 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы пациентов — Dr. Eliyar Стоматология</title>
+    <meta name="description"
+        content="Реальные текстовые и видео-отзывы пациентов стоматологического центра Dr. Eliyar в Бишкеке.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/components.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animations.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+</head>
+
+<body>
+    <header class="header" id="header">
+        <div class="header__inner">
+            <a href="{% url 'index' %}" class="logo"><span class="logo__icon"><i class="fa-solid fa-tooth"></i></span> Dr<span
+                    class="logo__dot">.</span> Eliyar</a>
+            <nav class="nav">
+                <ul class="nav__menu" id="navMenu">
+                    <li><a href="{% url 'doctor' %}" class="nav__link">О клинике</a></li>
+                    <li><a href="{% url 'services' %}" class="nav__link">Услуги</a></li>
+                    <li><a href="{% url 'tour' %}" class="nav__link">360° тур</a></li>
+                    <li><a href="{% url 'cases' %}" class="nav__link">Кейсы</a></li>
+                    <li><a href="{% url 'reviews' %}" class="nav__link active">Отзывы</a></li>
+                    <li><a href="{% url 'contacts' %}" class="nav__link">Контакты</a></li>
+                </ul>
+                <div class="nav__actions">
+                    <label class="toggle" id="fearToggle"><input type="checkbox" id="fearModeCheckbox"><span
+                            class="toggle__track"></span><span class="toggle__label"><i
+                                class="fa-regular fa-face-frown"></i> Я боюсь</span></label>
+                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Записаться</a>
+                </div>
+                <button class="nav__burger" id="burgerBtn"
+                    aria-label="Меню"><span></span><span></span><span></span></button>
+            </nav>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="{% url 'doctor' %}" class="mobile-menu__link">О клинике</a>
+        <a href="{% url 'services' %}" class="mobile-menu__link">Услуги</a>
+        <a href="{% url 'tour' %}" class="mobile-menu__link">360° тур</a>
+        <a href="{% url 'cases' %}" class="mobile-menu__link">Кейсы</a>
+        <a href="{% url 'reviews' %}" class="mobile-menu__link">Отзывы</a>
+        <a href="{% url 'contacts' %}" class="mobile-menu__link">Контакты</a>
+    </div>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="breadcrumbs"><a href="{% url 'index' %}">Главная</a><span
+                    class="breadcrumbs__sep">/</span><span>Отзывы</span></div>
+            <h1>Отзывы наших пациентов</h1>
+            <p>Спасибо каждому, кто доверил нам свою улыбку</p>
+        </div>
+    </section>
+
+    <!-- Stats bar -->
+    <section class="section" style="padding:var(--space-xl) 0;">
+        <div class="container">
+            <div class="grid grid--4 reveal-stagger" style="text-align:center;">
+                <div>
+                    <div style="font-size:36px;font-weight:700;color:var(--color-primary-hover);">5 000+</div>
+                    <div style="font-size:14px;color:var(--color-text-secondary);">довольных пациентов</div>
+                </div>
+                <div>
+                    <div style="font-size:36px;font-weight:700;color:var(--color-primary-hover);">4.9</div>
+                    <div style="font-size:14px;color:var(--color-text-secondary);">средний рейтинг <i
+                            class="fa-solid fa-star" style="color:#f59e0b;"></i></div>
+                </div>
+                <div>
+                    <div style="font-size:36px;font-weight:700;color:var(--color-primary-hover);">98%</div>
+                    <div style="font-size:14px;color:var(--color-text-secondary);">рекомендуют нас</div>
+                </div>
+                <div>
+                    <div style="font-size:36px;font-weight:700;color:var(--color-primary-hover);">200+</div>
+                    <div style="font-size:14px;color:var(--color-text-secondary);">отзывов онлайн</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="tabs reveal" style="margin:0 auto var(--space-xl);">
+                <button class="tabs__btn active" data-tab="text-reviews"><i class="fa-solid fa-comment-dots"></i>
+                    Текстовые</button>
+                <button class="tabs__btn" data-tab="video-reviews"><i class="fa-solid fa-video"></i> Видео</button>
+            </div>
+
+            <div class="tab-content active" id="text-reviews">
+                <div class="grid grid--3 reveal-stagger">
+                    <div class="card review-card">
+                        <div class="review-card__stars"><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="review-card__text">«Впервые не боялась идти к стоматологу! Доктор Элияр всё объяснил
+                            на понятном языке, показал прямо на мониторе, что и как будет происходить. Процедура прошла
+                            совершенно безболезненно. Результат — идеальная улыбка!»</div>
+                        <div class="review-card__author">
+                            <div class="review-card__avatar">АК</div>
+                            <div>
+                                <div class="review-card__name">Айгуль К.</div>
+                                <div class="review-card__date">Январь 2026 · Виниры</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card review-card">
+                        <div class="review-card__stars"><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="review-card__text">«Делал имплантацию 3 зубов — качество на высшем уровне. Клиника
+                            оснащена по последнему слову техники. Закись азота помогла с тревогой. Жевать нормально —
+                            бесценно. Спасибо за новую улыбку!»</div>
+                        <div class="review-card__author">
+                            <div class="review-card__avatar">МТ</div>
+                            <div>
+                                <div class="review-card__name">Марат Т.</div>
+                                <div class="review-card__date">Декабрь 2025 · Имплантация</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card review-card">
+                        <div class="review-card__stars"><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="review-card__text">«Виниры E-max — просто космос! Очень приятная атмосфера, вежливый
+                            персонал. Доктор подобрал цвет идеально — натурально, но заметно белее. Рекомендую всем
+                            знакомым!»</div>
+                        <div class="review-card__author">
+                            <div class="review-card__avatar">ДС</div>
+                            <div>
+                                <div class="review-card__name">Дана С.</div>
+                                <div class="review-card__date">Ноябрь 2025 · Виниры</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card review-card">
+                        <div class="review-card__stars"><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="review-card__text">«Лечил кариес на 4 зубах — всё быстро и безболезненно. Доктор
+                            работает под микроскопом, чувствуется профессионализм. Пломбы поставил так, что не отличить
+                            от родных зубов.»</div>
+                        <div class="review-card__author">
+                            <div class="review-card__avatar">ЕВ</div>
+                            <div>
+                                <div class="review-card__name">Ержан В.</div>
+                                <div class="review-card__date">Октябрь 2025 · Терапия</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card review-card">
+                        <div class="review-card__stars"><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="review-card__text">«Ребёнку (5 лет) лечили 3 зуба — доктор нашёл подход, ребёнок не
+                            плакал и даже попросился ещё раз "к зубному дяде". Теперь наш семейный стоматолог!»</div>
+                        <div class="review-card__author">
+                            <div class="review-card__avatar">НА</div>
+                            <div>
+                                <div class="review-card__name">Наталья А.</div>
+                                <div class="review-card__date">Сентябрь 2025 · Детская</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card review-card">
+                        <div class="review-card__stars"><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="review-card__text">«Делала Air-Flow чистку + отбеливание Zoom за одно посещение.
+                            Зубы на 5 тонов белее за один день! Очень довольна, буду ходить на чистку каждые полгода.»
+                        </div>
+                        <div class="review-card__author">
+                            <div class="review-card__avatar">ОК</div>
+                            <div>
+                                <div class="review-card__name">Олеся К.</div>
+                                <div class="review-card__date">Август 2025 · Гигиена</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card review-card">
+                        <div class="review-card__stars"><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="review-card__text">«Сложный кейс — отсутствовали 3 зуба + старые коронки. Доктор
+                            предложил комплексный план: имплантация + замена коронок на циркониевые. Результат превзошёл
+                            ожидания!»</div>
+                        <div class="review-card__author">
+                            <div class="review-card__avatar">АС</div>
+                            <div>
+                                <div class="review-card__name">Алексей С.</div>
+                                <div class="review-card__date">Июль 2025 · Протезирование</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card review-card">
+                        <div class="review-card__stars"><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="review-card__text">«Я дентофоб со стажем — 10 лет не ходила к стоматологам. В Dr.
+                            Eliyar мне предложили включить "режим комфорта" — закись азота, музыка в наушниках. Вылечили
+                            все зубы за 3 визита!»</div>
+                        <div class="review-card__author">
+                            <div class="review-card__avatar">ЛМ</div>
+                            <div>
+                                <div class="review-card__name">Лейла М.</div>
+                                <div class="review-card__date">Июнь 2025 · Комплексное</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card review-card">
+                        <div class="review-card__stars"><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="review-card__text">«Ставил коронку на передний зуб — боялся, что будет выделяться.
+                            Доктор подобрал идеальный оттенок, даже моя жена не заметила разницу!»</div>
+                        <div class="review-card__author">
+                            <div class="review-card__avatar">ТМ</div>
+                            <div>
+                                <div class="review-card__name">Тимур М.</div>
+                                <div class="review-card__date">Май 2025 · Коронки</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="video-reviews">
+                <div class="grid grid--3 reveal-stagger">
+                    <div class="video-card" onclick="openVideoModal()">
+                        <img class="video-card__thumb"
+                            src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&h=300&fit=crop&q=80"
+                            alt="Видео-отзыв Айнур" loading="lazy">
+                        <div class="video-card__play"><i class="fa-solid fa-play"></i></div>
+                        <div class="video-card__info">
+                            <div class="video-card__name">Айнур — об имплантации</div>
+                        </div>
+                    </div>
+                    <div class="video-card" onclick="openVideoModal()">
+                        <img class="video-card__thumb"
+                            src="https://images.unsplash.com/photo-1607990281513-2c110a25e43c?w=500&h=300&fit=crop&q=80"
+                            alt="Видео-отзыв Камила" loading="lazy">
+                        <div class="video-card__play"><i class="fa-solid fa-play"></i></div>
+                        <div class="video-card__info">
+                            <div class="video-card__name">Камила — о винирах E-max</div>
+                        </div>
+                    </div>
+                    <div class="video-card" onclick="openVideoModal()">
+                        <img class="video-card__thumb"
+                            src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=300&fit=crop&q=80"
+                            alt="Видео-отзыв Тимур" loading="lazy">
+                        <div class="video-card__play"><i class="fa-solid fa-play"></i></div>
+                        <div class="video-card__info">
+                            <div class="video-card__name">Тимур — о лечении под микроскопом</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="videoModal">
+        <div class="modal" style="max-width:720px;padding:0;overflow:hidden;">
+            <button class="modal__close" id="closeVideoModal"><i class="fa-solid fa-xmark"></i></button>
+            <div
+                style="width:100%;height:400px;background:#000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#555;">
+                <div style="font-size:48px;"><i class="fa-solid fa-film"></i></div>
+                <div style="font-size:16px;">Видео-отзыв пациента</div>
+                <div style="font-size:12px;color:#444;">Здесь будет встроенный YouTube/Vimeo плеер</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section cta-section section--alt">
+        <div class="container reveal">
+            <h2>Присоединяйтесь к 5 000+ довольных пациентов</h2>
+            <p>Запишитесь на бесплатную консультацию уже сегодня.</p>
+            <a href="contacts.html#booking" class="btn btn--primary btn--lg">Записаться бесплатно</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="index.html" class="logo"><span class="logo__icon"><i class="fa-solid fa-tooth"></i></span>
+                        Dr<span class="logo__dot">.</span> Eliyar</a>
+                    <p>Стоматологический центр премиум-класса в Бишкеке.</p>
+                    <div class="footer__socials">
+                        <a href="#" class="footer__social-link" aria-label="Instagram"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="footer__social-link" aria-label="WhatsApp"><i
+                                class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" class="footer__social-link" aria-label="Telegram"><i
+                                class="fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer__title">Навигация</div>
+                    <ul class="footer__links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="services.html">Услуги</a></li>
+                        <li><a href="doctor.html">О клинике</a></li>
+                        <li><a href="cases.html">Кейсы</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer__title">Пациентам</div>
+                    <ul class="footer__links">
+                        <li><a href="reviews.html">Отзывы</a></li>
+                        <li><a href="tour.html">360° тур</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer__title">Контакты</div>
+                    <ul class="footer__links">
+                        <li><a href="tel:+996555123456"><i class="fa-solid fa-phone"></i> +996 (555) 12-34-56</a></li>
+                        <li><i class="fa-solid fa-location-dot"></i> г. Бишкек, ул. Киевская 77</li>
+                        <li><i class="fa-regular fa-clock"></i> Пн–Сб: 09:00–20:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom"><span>© 2026 Dr. Eliyar — Все права защищены</span><span>Сделано с <i
+                        class="fa-solid fa-heart" style="color:#ef4444;"></i> в Бишкеке</span></div>
+        </div>
+    </footer>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'assets/js/fear-mode.js' %}"></script>
+    <script>
+        document.querySelectorAll('.tabs__btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tabs__btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+        function openVideoModal() { document.getElementById('videoModal').classList.add('active'); }
+        document.getElementById('closeVideoModal').addEventListener('click', () => { document.getElementById('videoModal').classList.remove('active'); });
+        document.getElementById('videoModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('active'); });
+    </script>
+</body>
+
+</html>
