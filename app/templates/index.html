@@ -42,7 +42,7 @@
                         <span class="toggle__track"></span>
                         <span class="toggle__label"><i class="fa-regular fa-face-frown"></i> Я боюсь</span>
                     </label>
-                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Записаться</a>
+                    <a href="{% url 'contacts' %}#booking" class="btn btn--primary btn--sm">Записаться</a>
                 </div>
                 <button class="nav__burger" id="burgerBtn" aria-label="Меню">
                     <span></span><span></span><span></span>
@@ -81,8 +81,8 @@
                     <b>комфортно и спокойно</b> на каждом этапе.</p>
 
                 <div class="hero__buttons">
-                    <a href="contacts.html#booking" class="btn btn--primary btn--lg">Записаться бесплатно</a>
-                    <a href="tour.html" class="btn btn--outline btn--lg">Смотреть 360° тур</a>
+                    <a href="{% url 'contacts' %}#booking" class="btn btn--primary btn--lg">Записаться бесплатно</a>
+                    <a href="{% url 'tour' %}" class="btn btn--outline btn--lg">Смотреть 360° тур</a>
                 </div>
             </div>
 
@@ -158,7 +158,7 @@
                     <div class="card__title">Имплантация</div>
                     <div class="card__text">Восстановление зубов на имплантатах Straumann с пожизненной гарантией.
                         Безболезненная операция с навигационным шаблоном.</div>
-                    <a href="services.html" class="btn btn--ghost" style="margin-top:var(--space-md);">Подробнее <i
+                    <a href="{% url 'services' %}" class="btn btn--ghost" style="margin-top:var(--space-md);">Подробнее <i
                             class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="card">
@@ -169,7 +169,7 @@
                     <div class="card__title">Виниры E-max</div>
                     <div class="card__text">Тончайшие керамические накладки, которые создают идеальную улыбку.
                         Минимальная обточка, максимальный результат.</div>
-                    <a href="services.html" class="btn btn--ghost" style="margin-top:var(--space-md);">Подробнее <i
+                    <a href="{% url 'services' %}" class="btn btn--ghost" style="margin-top:var(--space-md);">Подробнее <i
                             class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="card">
@@ -180,7 +180,7 @@
                     <div class="card__title">Лечение под микроскопом</div>
                     <div class="card__text">Лечение кариеса и пульпита с увеличением в 25х. Точность до микрона —
                         сохраняем максимум здоровой ткани.</div>
-                    <a href="services.html" class="btn btn--ghost" style="margin-top:var(--space-md);">Подробнее <i
+                    <a href="{% url 'services' %}" class="btn btn--ghost" style="margin-top:var(--space-md);">Подробнее <i
                             class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -245,7 +245,7 @@
                 </div>
             </div>
             <div style="text-align:center;margin-top:var(--space-xl);" class="reveal">
-                <a href="doctor.html" class="btn btn--outline">Подробнее о команде <i
+                <a href="{% url 'doctor' %}" class="btn btn--outline">Подробнее о команде <i
                         class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
@@ -269,7 +269,7 @@
                     <p class="calm-text" data-calm><i class="fa-solid fa-heart"
                             style="color:var(--color-calm-accent);"></i> Особенно рекомендуем тем, кто нервничает —
                         знакомое пространство снижает тревогу.</p>
-                    <a href="tour.html" class="btn btn--primary btn--sm">Начать тур <i
+                    <a href="{% url 'tour' %}" class="btn btn--primary btn--sm">Начать тур <i
                             class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -305,7 +305,7 @@
                             <div style="font-size:13px;color:var(--color-text-secondary);">курсов</div>
                         </div>
                     </div>
-                    <a href="doctor.html" class="btn btn--primary btn--sm">Подробнее о враче <i
+                    <a href="{% url 'doctor' %}" class="btn btn--primary btn--sm">Подробнее о враче <i
                             class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -351,7 +351,7 @@
                 </div>
             </div>
             <div style="text-align:center;margin-top:var(--space-xl);" class="reveal">
-                <a href="cases.html" class="btn btn--outline">Все кейсы <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="{% url 'cases' %}" class="btn btn--outline">Все кейсы <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -408,7 +408,7 @@
                 </div>
             </div>
             <div style="text-align:center;margin-top:var(--space-xl);" class="reveal">
-                <a href="reviews.html" class="btn btn--outline">Все отзывы <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="{% url 'reviews' %}" class="btn btn--outline">Все отзывы <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -418,7 +418,7 @@
         <div class="container reveal">
             <h2>Запишитесь на бесплатную консультацию</h2>
             <p>Узнайте план лечения и точную стоимость — без обязательств</p>
-            <a href="contacts.html#booking" class="btn btn--primary btn--lg">Записаться бесплатно</a>
+            <a href="{% url 'contacts' %}#booking" class="btn btn--primary btn--lg">Записаться бесплатно</a>
             <p class="calm-text" data-calm style="margin-top:var(--space-lg);"><i class="fa-solid fa-heart"
                     style="color:var(--color-calm-accent);"></i> Если вы боитесь — просто скажите. Мы подготовимся и всё
                 пройдёт максимально комфортно.</p>
@@ -430,7 +430,7 @@
         <div class="container">
             <div class="footer__grid">
                 <div class="footer__brand">
-                    <a href="index.html" class="logo"><span class="logo__icon"><i class="fa-solid fa-tooth"></i></span>
+                    <a href="{% url 'index' %}" class="logo"><span class="logo__icon"><i class="fa-solid fa-tooth"></i></span>
                         Dr<span class="logo__dot">.</span> Eliyar</a>
                     <p>Стоматологический центр премиум-класса в Бишкеке. Ваша улыбка — наша гордость.</p>
                     <div class="footer__socials">
