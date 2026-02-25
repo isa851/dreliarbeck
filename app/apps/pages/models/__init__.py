@@ -5,10 +5,12 @@ from .services import Service
 from .doctors import DoctorProfile
 from .cases import Case, CaseImage
 from .reviews import Review
+from .result import Result
 
 __all__ = [
     "TimeStampedModel",
     "SiteSettings",
+    "Result",
     "HomePage",
     "HomeStat",
     "HomeFeature",

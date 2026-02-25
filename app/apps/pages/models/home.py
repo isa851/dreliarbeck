@@ -28,6 +28,7 @@ class HomePage(TimeStampedModel):
     doctor_name = models.CharField(max_length=255, blank=True, verbose_name="Имя доктора")
     doctor_subtitle = models.CharField(max_length=255, blank=True, verbose_name="Подзаголовок доктора")
     doctor_description = models.TextField(blank=True, verbose_name="Описание доктора")
+    doctor_photo = models.ImageField(upload_to="home/doctor/", blank=True, null=True, verbose_name="Фото доктора")
 
     doctor_patients = models.IntegerField(blank=True, null=True, verbose_name="Количество пациентов")
     doctor_experience = models.IntegerField(blank=True, null=True, verbose_name="Опыт работы")
@@ -42,8 +43,10 @@ class HomePage(TimeStampedModel):
         verbose_name="Изображение результата",
     )
 
+
     review_title = models.CharField(max_length=255, blank=True, verbose_name="Заголовок отзыва")
     review_subtitle = models.CharField(max_length=255, blank=True, verbose_name="Подзаголовок отзыва")
+
 
     consultation_title = models.CharField(max_length=255, blank=True, verbose_name="Заголовок консультации")
     consultation_subtitle = models.CharField(max_length=255, blank=True, verbose_name="Подзаголовок консультации")

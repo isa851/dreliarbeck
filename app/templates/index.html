@@ -1,65 +1,9 @@
-
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru">
+{% load review_extras %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Eliyar — Стоматология будущего в Бишкеке</title>
-    <meta name="description"
-        content="Стоматологический центр Dr. Eliyar — виниры, имплантация, лечение без боли. Премиальная стоматология в Бишкеке.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/components.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/animations.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
-</head>
-
-<body>
-    <!-- ====== HEADER ====== -->
-    <header class="header" id="header">
-        <div class="header__inner">
-            <a href="{% url 'index' %}" class="logo">
-                <span class="logo__icon"><i class="fa-solid fa-tooth"></i></span>
-                Dr<span class="logo__dot">.</span> Eliyar
-            </a>
-            <nav class="nav">
-                <ul class="nav__menu" id="navMenu">
-                    <li><a href="{% url 'doctor' %}" class="nav__link">О клинике</a></li>
-                    <li><a href="{% url 'services' %}" class="nav__link">Услуги</a></li>
-                    <li><a href="{% url 'tour' %}" class="nav__link">360° тур</a></li>
-                    <li><a href="{% url 'cases' %}" class="nav__link">Кейсы</a></li>
-                    <li><a href="{% url 'reviews' %}" class="nav__link">Отзывы</a></li>
-                    <li><a href="{% url 'contacts' %}" class="nav__link">Контакты</a></li>
-                </ul>
-                <div class="nav__actions">
-                    <label class="toggle" id="fearToggle">
-                        <input type="checkbox" id="fearModeCheckbox">
-                        <span class="toggle__track"></span>
-                        <span class="toggle__label"><i class="fa-regular fa-face-frown"></i> Я боюсь</span>
-                    </label>
-                    <a href="{% url 'contacts' %}#booking" class="btn btn--primary btn--sm">Записаться</a>
-                </div>
-                <button class="nav__burger" id="burgerBtn" aria-label="Меню">
-                    <span></span><span></span><span></span>
-                </button>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="{% url 'doctor' %}" class="mobile-menu__link">О клинике</a>
-        <a href="{% url 'services' %}" class="mobile-menu__link">Услуги</a>
-        <a href="{% url 'tour' %}" class="mobile-menu__link">360° тур</a>
-        <a href="{% url 'cases' %}" class="mobile-menu__link">Кейсы</a>
-        <a href="{% url 'reviews' %}" class="mobile-menu__link">Отзывы</a>
-        <a href="{% url 'contacts' %}" class="mobile-menu__link">Контакты</a>
-    </div>
+{% block content %}
+  
 
     <!-- ====== HERO ====== -->
     <section class="hero">
@@ -70,10 +14,9 @@
         <div class="hero__overlay"></div>
         <div class="container hero__inner">
             <div class="hero__content reveal--left">
-                <span class="badge"><span class="badge__dot"></span> Приём открыт</span>
-                <h1 class="hero__title">Стоматология<br>нового поколения</h1>
-                <p class="hero__subtitle">Виниры, имплантация и лечение без боли — с заботой о каждой детали вашей
-                    улыбки. Клиника Dr. Eliyar в Бишкеке.</p>
+                <span class="badge"><span class="badge__dot"></span>{{ index.hero_badge }}</span>
+                <h1 class="hero__title">{{ index.hero_title }}</h1>
+                <p class="hero__subtitle">{{ index.hero_subtitle }}</p>
 
                 <!-- Fear mode calm text -->
                 <p class="calm-text" data-calm><i class="fa-solid fa-heart" style="color:var(--color-calm-accent);"></i>
@@ -107,149 +50,86 @@
     </section>
 
     <!-- ====== TRUST CARDS ====== -->
-    <section class="section">
-        <div class="container">
-            <div class="section__header reveal">
-                <h2>Почему нам доверяют</h2>
-                <p>Каждый пациент для нас — не просто приём, а история, которой мы гордимся</p>
-            </div>
-            <div class="grid grid--4 reveal-stagger">
-                <div class="card">
-                    <div class="card__icon"><i class="fa-solid fa-trophy"></i></div>
-                    <div class="card__title">12 лет опыта</div>
-                    <div class="card__text">Более 5 000 довольных пациентов. Каждый кейс — результат глубокой экспертизы
-                        и внимания к деталям.</div>
-                </div>
-                <div class="card">
-                    <div class="card__icon"><i class="fa-solid fa-microscope"></i></div>
-                    <div class="card__title">Современное оборудование</div>
-                    <div class="card__text">3D-томограф, дентальный микроскоп, лазер — мы используем технологии, которые
-                        делают лечение точнее и безболезненнее.</div>
-                </div>
-                <div class="card">
-                    <div class="card__icon"><i class="fa-solid fa-gem"></i></div>
-                    <div class="card__title">Премиум-материалы</div>
-                    <div class="card__text">Работаем только с немецкими и швейцарскими брендами: Straumann, E-max,
-                        Ivoclar. Гарантия качества от 5 лет.</div>
-                </div>
-                <div class="card">
-                    <div class="card__icon"><i class="fa-solid fa-handshake"></i></div>
-                    <div class="card__title">Честная стоимость</div>
-                    <div class="card__text">Фиксированные цены без скрытых доплат. Вы знаете итоговую сумму ещё до
-                        начала лечения.</div>
-                </div>
-            </div>
+   <!-- ====== TRUST CARDS ====== -->
+<section class="section">
+  <div class="container">
+    <div class="section__header reveal">
+      <h2>{{ index.trust_title }}</h2>
+      <p>{{ index.trust_subtitle }}</p>
+    </div>
+
+    <div class="grid grid--4 reveal-stagger">
+      {% for stat in index.stats.all %}
+        <div class="card">
+          <div class="card__icon"><i class="fa-solid fa-trophy"></i></div>
+          <div class="card__title">{{ stat.value }}</div>
+          <div class="card__text">{{ stat.label }}</div>
         </div>
-    </section>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
     <!-- ====== SERVICES PREVIEW ====== -->
     <section class="section section--alt">
         <div class="container">
             <div class="section__header reveal">
-                <h2>Наши услуги</h2>
-                <p>Комплексный подход к здоровью и красоте вашей улыбки</p>
+                <h2>{{ index.services_title }}</h2>
+                <p>{{ index.services_subtitle }}</p>
             </div>
             <div class="grid grid--3 reveal-stagger">
+                {% for service in services %}
                 <div class="card">
                     <div class="card__img">
-                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&h=340&fit=crop&q=80"
+                        <img src="{{ service.icon.url }}"
                             alt="Имплантация зубов" loading="lazy">
                     </div>
-                    <div class="card__title">Имплантация</div>
-                    <div class="card__text">Восстановление зубов на имплантатах Straumann с пожизненной гарантией.
-                        Безболезненная операция с навигационным шаблоном.</div>
+                    <div class="card__title">{{ service.title }}</div>
+                    <div class="card__text">{{ service.description }}</div>
                     <a href="{% url 'services' %}" class="btn btn--ghost" style="margin-top:var(--space-md);">Подробнее <i
                             class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                <div class="card">
-                    <div class="card__img">
-                        <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=600&h=340&fit=crop&q=80"
-                            alt="Виниры" loading="lazy">
-                    </div>
-                    <div class="card__title">Виниры E-max</div>
-                    <div class="card__text">Тончайшие керамические накладки, которые создают идеальную улыбку.
-                        Минимальная обточка, максимальный результат.</div>
-                    <a href="{% url 'services' %}" class="btn btn--ghost" style="margin-top:var(--space-md);">Подробнее <i
-                            class="fa-solid fa-arrow-right"></i></a>
-                </div>
-                <div class="card">
-                    <div class="card__img">
-                        <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&h=340&fit=crop&q=80"
-                            alt="Лечение зубов" loading="lazy">
-                    </div>
-                    <div class="card__title">Лечение под микроскопом</div>
-                    <div class="card__text">Лечение кариеса и пульпита с увеличением в 25х. Точность до микрона —
-                        сохраняем максимум здоровой ткани.</div>
-                    <a href="{% url 'services' %}" class="btn btn--ghost" style="margin-top:var(--space-md);">Подробнее <i
-                            class="fa-solid fa-arrow-right"></i></a>
-                </div>
+                {% endfor %}              
+               
             </div>
         </div>
     </section>
 
     <!-- ====== OUR TEAM ====== -->
-    <section class="section">
-        <div class="container">
-            <div class="section__header reveal">
-                <h2>Наша команда</h2>
-                <p>Профессионалы, которым вы доверяете свою улыбку</p>
-            </div>
-            <div class="grid grid--4 reveal-stagger">
-                <div class="team-card">
-                    <div class="team-card__photo">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=480&fit=crop&q=80"
-                            alt="Dr. Eliyar" loading="lazy">
-                    </div>
-                    <div class="team-card__info">
-                        <h4 class="team-card__name">Dr. Eliyar</h4>
-                        <div class="team-card__role">Главный врач · Ортопед · Имплантолог</div>
-                        <p class="team-card__desc">12 лет опыта. Обучался в Германии и Южной Корее. Специализация —
-                            эстетика и имплантация.</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-card__photo">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=480&fit=crop&q=80"
-                            alt="Dr. Айгерим" loading="lazy">
-                    </div>
-                    <div class="team-card__info">
-                        <h4 class="team-card__name">Dr. Айгерим</h4>
-                        <div class="team-card__role">Стоматолог-терапевт</div>
-                        <p class="team-card__desc">8 лет опыта. Специализация — лечение под микроскопом, художественная
-                            реставрация.</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-card__photo">
-                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=480&fit=crop&q=80"
-                            alt="Dr. Бекзат" loading="lazy">
-                    </div>
-                    <div class="team-card__info">
-                        <h4 class="team-card__name">Dr. Бекзат</h4>
-                        <div class="team-card__role">Хирург · Имплантолог</div>
-                        <p class="team-card__desc">10 лет опыта. Навигационная имплантация, удаление зубов мудрости.
-                            Стажировка в Турции.</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-card__photo">
-                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964e7c3?w=400&h=480&fit=crop&q=80"
-                            alt="Dr. Нуржан" loading="lazy">
-                    </div>
-                    <div class="team-card__info">
-                        <h4 class="team-card__name">Dr. Нуржан</h4>
-                        <div class="team-card__role">Ортодонт</div>
-                        <p class="team-card__desc">6 лет опыта. Элайнеры, брекеты, исправление прикуса.
-                            Сертифицированный специалист Invisalign.</p>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align:center;margin-top:var(--space-xl);" class="reveal">
-                <a href="{% url 'doctor' %}" class="btn btn--outline">Подробнее о команде <i
-                        class="fa-solid fa-arrow-right"></i></a>
-            </div>
-        </div>
-    </section>
+ <section class="section">
+  <div class="container">
+    <div class="section__header reveal">
+      <h2>{{ index.our_command_title }}</h2>
+      <p>{{ index.our_command_subtitle }}</p>
+    </div>
+
+    <div class="grid grid--4 reveal-stagger">
+  {% for doctor in doctors %}
+    <div class="team-card">
+      <div class="team-card__photo">
+        {% if doctor.photo %}
+          <img src="{{ doctor.photo.url }}" alt="{{ doctor.name }}" loading="lazy">
+        {% else %}
+          <img src="https://via.placeholder.com/600x600?text=Doctor" alt="{{ doctor.name }}" loading="lazy">
+        {% endif %}
+      </div>
+
+      <div class="team-card__info">
+        <h4 class="team-card__name">{{ doctor.name }}</h4>
+        <div class="team-card__role">{{ doctor.role }}</div>
+        <p class="team-card__desc">{{ doctor.description }}</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+    <div style="text-align:center;margin-top:var(--space-xl);" class="reveal">
+      <a href="{% url 'doctor' %}" class="btn btn--outline">
+        Подробнее о команде <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
 
     <!-- ====== 360° TOUR PREVIEW ====== -->
     <section class="section section--alt">
@@ -263,9 +143,8 @@
                 </div>
                 <div class="case-block__info">
                     <span class="badge badge--accent"><i class="fa-solid fa-vr-cardboard"></i> 360° тур</span>
-                    <h2>Загляните в клинику</h2>
-                    <p>Познакомьтесь с нашими кабинетами, оборудованием и зоной отдыха, не выходя из дома. Виртуальный
-                        тур поможет вам чувствовать себя увереннее перед первым визитом.</p>
+                    <h2>{{ index.tur_title }}</h2>
+                    <p>{{ index.tur_subtitle }}</p>
                     <p class="calm-text" data-calm><i class="fa-solid fa-heart"
                             style="color:var(--color-calm-accent);"></i> Особенно рекомендуем тем, кто нервничает —
                         знакомое пространство снижает тревогу.</p>
@@ -281,27 +160,25 @@
         <div class="container">
             <div class="case-block case-block--reverse reveal">
                 <div class="case-block__visual" style="height:440px;border-radius:var(--radius-xl);overflow:hidden;">
-                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&h=800&fit=crop&q=80"
+                    <img src="{{ index.doctor_photo.url }}"
                         alt="Доктор Элияр" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
                 </div>
                 <div class="case-block__info">
                     <span class="badge badge--accent"><i class="fa-solid fa-user-doctor"></i> Ваш доктор</span>
-                    <h2>Dr. Eliyar</h2>
-                    <p style="color:var(--color-primary-hover);font-weight:600;font-size:16px;">Стоматолог-ортопед,
-                        имплантолог</p>
-                    <p>Более 12 лет клинического опыта. Обучался в Германии и Южной Корее. Специализация — эстетическая
-                        реставрация и дентальная имплантация. Каждый случай рассматривает индивидуально.</p>
+                    <h2>{{ index.doctor_name }}</h2>
+                    <p style="color:var(--color-primary-hover);font-weight:600;font-size:16px;">{{ index.doctor_role }}</p>
+                    <p>{{ index.doctor_description }}</p>
                     <div style="display:flex;gap:var(--space-2xl);padding:var(--space-md) 0;">
                         <div>
-                            <div style="font-size:28px;font-weight:700;color:var(--color-primary-hover);">5 000+</div>
+                            <div style="font-size:28px;font-weight:700;color:var(--color-primary-hover);">{{ index.doctor_patients }}</div>
                             <div style="font-size:13px;color:var(--color-text-secondary);">пациентов</div>
                         </div>
                         <div>
-                            <div style="font-size:28px;font-weight:700;color:var(--color-primary-hover);">12</div>
+                            <div style="font-size:28px;font-weight:700;color:var(--color-primary-hover);">{{ index.doctor_experience }}</div>
                             <div style="font-size:13px;color:var(--color-text-secondary);">лет опыта</div>
                         </div>
                         <div>
-                            <div style="font-size:28px;font-weight:700;color:var(--color-primary-hover);">15+</div>
+                            <div style="font-size:28px;font-weight:700;color:var(--color-primary-hover);">{{ index.doctor_courses }}</div>
                             <div style="font-size:13px;color:var(--color-text-secondary);">курсов</div>
                         </div>
                     </div>
@@ -316,39 +193,21 @@
     <section class="section section--alt">
         <div class="container">
             <div class="section__header reveal">
-                <h2>Результаты работы</h2>
-                <p>Реальные кейсы наших пациентов — до и после</p>
+                <h2>{{ index.result_title }}</h2>
+                <p>{{ index.result_subtitle }}</p>
             </div>
             <div class="grid grid--3 reveal-stagger">
+                {% for results in results %}
                 <div class="card">
                     <div class="card__img" style="position:relative;">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=340&fit=crop&q=80"
+                        <img src="{{ results.image.url }}"
                             alt="Кейс виниры" loading="lazy">
-                        <span class="badge badge--accent" style="position:absolute;top:12px;left:12px;">Виниры</span>
+                        <span class="badge badge--accent" style="position:absolute;top:12px;left:12px;">{{ results.type }}</span>
                     </div>
-                    <div class="card__title">Полная эстетическая реставрация</div>
-                    <div class="card__text">10 виниров E-max. Срок — 2 недели.</div>
+                    <div class="card__title">{{ results.title }}</div>
+                    <div class="card__text">{{ results.description }}</div>
                 </div>
-                <div class="card">
-                    <div class="card__img" style="position:relative;">
-                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&h=340&fit=crop&q=80"
-                            alt="Кейс имплантация" loading="lazy">
-                        <span class="badge badge--accent"
-                            style="position:absolute;top:12px;left:12px;">Имплантация</span>
-                    </div>
-                    <div class="card__title">Восстановление жевательных зубов</div>
-                    <div class="card__text">3 имплантата Straumann. Срок — 3 месяца.</div>
-                </div>
-                <div class="card">
-                    <div class="card__img" style="position:relative;">
-                        <img src="https://images.unsplash.com/photo-1581585095728-17dfddf2acd8?w=600&h=340&fit=crop&q=80"
-                            alt="Кейс отбеливание" loading="lazy">
-                        <span class="badge badge--accent"
-                            style="position:absolute;top:12px;left:12px;">Отбеливание</span>
-                    </div>
-                    <div class="card__title">Zoom-отбеливание на 6 тонов</div>
-                    <div class="card__text">Профчистка + отбеливание за 1 день.</div>
-                </div>
+                {% endfor %} 
             </div>
             <div style="text-align:center;margin-top:var(--space-xl);" class="reveal">
                 <a href="{% url 'cases' %}" class="btn btn--outline">Все кейсы <i class="fa-solid fa-arrow-right"></i></a>
@@ -357,67 +216,66 @@
     </section>
 
     <!-- ====== REVIEWS PREVIEW ====== -->
-    <section class="section">
-        <div class="container">
-            <div class="section__header reveal">
-                <h2>Что говорят пациенты</h2>
-                <p>Отзывы наших пациентов — лучшая рекомендация</p>
+ <section class="section">
+  <div class="container">
+    <div class="section__header reveal">
+      <h2>{{ index.review_title }}</h2>
+      <p>{{ index.review_subtitle }}</p>
+    </div>
+
+    <div class="grid grid--3 reveal-stagger">
+      {% for reviews in reviews %}
+        <div class="card review-card">
+
+          <!-- Звезды как на скрине (в плашке) -->
+          <div class="review-card__stars-badge" aria-label="Рейтинг: {{ reviews.rating }}">
+            <div class="review-card__stars">
+              {% for s in reviews.rating|stars %}
+                {% if s == "full" %}
+                  <i class="fa-solid fa-star"></i>
+                {% elif s == "half" %}
+                  <i class="fa-solid fa-star-half-stroke"></i>
+                {% else %}
+                  <i class="fa-regular fa-star"></i>
+                {% endif %}
+              {% endfor %}
             </div>
-            <div class="grid grid--3 reveal-stagger">
-                <div class="card review-card">
-                    <div class="review-card__stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i></div>
-                    <div class="review-card__text">«Впервые не боялась идти к стоматологу! Доктор Элияр всё объяснил,
-                        процедура прошла безболезненно. Результат — идеальная улыбка!»</div>
-                    <div class="review-card__author">
-                        <div class="review-card__avatar">АК</div>
-                        <div>
-                            <div class="review-card__name">Айгуль К.</div>
-                            <div class="review-card__date">Январь 2026</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card review-card">
-                    <div class="review-card__stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i></div>
-                    <div class="review-card__text">«Делал имплантацию — качество на высшем уровне. Клиника оснащена по
-                        последнему слову техники. Спасибо за новую улыбку!»</div>
-                    <div class="review-card__author">
-                        <div class="review-card__avatar">МТ</div>
-                        <div>
-                            <div class="review-card__name">Марат Т.</div>
-                            <div class="review-card__date">Декабрь 2025</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card review-card">
-                    <div class="review-card__stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i></div>
-                    <div class="review-card__text">«Виниры — просто космос! Очень приятная атмосфера, вежливый персонал.
-                        Рекомендую всем знакомым!»</div>
-                    <div class="review-card__author">
-                        <div class="review-card__avatar">ДС</div>
-                        <div>
-                            <div class="review-card__name">Дана С.</div>
-                            <div class="review-card__date">Ноябрь 2025</div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+
+          <div class="review-card__text">{{ reviews.text }}</div>
+
+          <div class="review-card__author">
+            <div class="review-card__avatar">
+              {% if reviews.avatar %}
+                <img src="{{ reviews.avatar.url }}" alt="{{ reviews.author_name }}">
+              {% else %}
+                <div class="review-card__avatar-fallback">{{ reviews.author_name|slice:":1" }}</div>
+              {% endif %}
             </div>
-            <div style="text-align:center;margin-top:var(--space-xl);" class="reveal">
-                <a href="{% url 'reviews' %}" class="btn btn--outline">Все отзывы <i class="fa-solid fa-arrow-right"></i></a>
+
+            <div>
+              <div class="review-card__name">{{ reviews.author_name }}</div>
+              <div class="review-card__date">{{ reviews.created_at|date:"d.m.Y" }}</div>
             </div>
+          </div>
+
         </div>
-    </section>
+      {% endfor %}
+    </div>
+
+    <div style="text-align:center;margin-top:var(--space-xl);" class="reveal">
+      <a href="{% url 'reviews' %}" class="btn btn--outline">
+        Все отзывы <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
 
     <!-- ====== CTA ====== -->
     <section class="section cta-section">
         <div class="container reveal">
-            <h2>Запишитесь на бесплатную консультацию</h2>
-            <p>Узнайте план лечения и точную стоимость — без обязательств</p>
+            <h2>{{ index.consultation_title }}</h2>
+            <p>{{ index.consultation_subtitle }}</p>
             <a href="{% url 'contacts' %}#booking" class="btn btn--primary btn--lg">Записаться бесплатно</a>
             <p class="calm-text" data-calm style="margin-top:var(--space-lg);"><i class="fa-solid fa-heart"
                     style="color:var(--color-calm-accent);"></i> Если вы боитесь — просто скажите. Мы подготовимся и всё
@@ -425,63 +283,6 @@
         </div>
     </section>
 
-    <!-- ====== FOOTER ====== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__grid">
-                <div class="footer__brand">
-                    <a href="{% url 'index' %}" class="logo"><span class="logo__icon"><i class="fa-solid fa-tooth"></i></span>
-                        Dr<span class="logo__dot">.</span> Eliyar</a>
-                    <p>Стоматологический центр премиум-класса в Бишкеке. Ваша улыбка — наша гордость.</p>
-                    <div class="footer__socials">
-                        <a href="#" class="footer__social-link" aria-label="Instagram"><i
-                                class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="footer__social-link" aria-label="WhatsApp"><i
-                                class="fa-brands fa-whatsapp"></i></a>
-                        <a href="#" class="footer__social-link" aria-label="Telegram"><i
-                                class="fa-brands fa-telegram"></i></a>
-                        <a href="#" class="footer__social-link" aria-label="YouTube"><i
-                                class="fa-brands fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <div class="footer__title">Навигация</div>
-                    <ul class="footer__links">
-                        <li><a href="index.html">Главная</a></li>
-                        <li><a href="services.html">Услуги</a></li>
-                        <li><a href="doctor.html">О клинике</a></li>
-                        <li><a href="cases.html">Кейсы</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer__title">Пациентам</div>
-                    <ul class="footer__links">
-                        <li><a href="reviews.html">Отзывы</a></li>
-                        <li><a href="tour.html">360° тур</a></li>
-                        <li><a href="contacts.html">Контакты</a></li>
-                        <li><a href="contacts.html#booking">Записаться</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer__title">Контакты</div>
-                    <ul class="footer__links">
-                        <li><a href="tel:+996555123456"><i class="fa-solid fa-phone"></i> +996 (555) 12-34-56</a></li>
-                        <li><i class="fa-solid fa-location-dot"></i> г. Бишкек, ул. Киевская 77</li>
-                        <li><i class="fa-regular fa-clock"></i> Пн–Пт: 09:00–20:00</li>
-                        <li><i class="fa-regular fa-clock"></i> Сб: 10:00–18:00</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer__bottom">
-                <span>© 2026 Dr. Eliyar — Все права защищены</span>
-                <span>Сделано с <i class="fa-solid fa-heart" style="color:#ef4444;"></i> в Бишкеке</span>
-            </div>
-        </div>
-    </footer>
 
-    <script src="{% static 'assets/js/main.js' %}"></script>
-    <script src="{% static 'assets/js/forms.js' %}"></script>
-    <script src="{% static 'assets/js/fear-mode.js' %}"></script>
-</body>
 
-</html>
+{% endblock %}

@@ -1,12 +1,30 @@
 from django.shortcuts import render
-from apps.pages.models import HomePage, Service, Case, Review, DoctorProfile
+from apps.pages.models import (
+    HomePage,
+    Service,
+    Case,
+    Review,
+    DoctorProfile,
+    SiteSettings,
+    HomeStat,
+    Result,
+)
+
 
 def index_page(request):
     index = HomePage.objects.order_by("-id").first()
+
     services = Service.objects.filter(is_active=True).order_by("order")
     cases = Case.objects.filter(is_active=True).order_by("order")[:6]
     reviews = Review.objects.filter(is_active=True).order_by("order")[:6]
-    doctor = DoctorProfile.objects.order_by("-id").first()
+
+    results = Result.objects.order_by("order")
+    doctors = DoctorProfile.objects.order_by("-id")[:4]
+
+    results = Result.objects.order_by("-id")     
+    settings = SiteSettings.objects.order_by("-id").first()
+
+    stats = HomeStat.objects.filter(home=index).order_by("order") if index else []
 
     return render(
         request,
@@ -16,7 +34,13 @@ def index_page(request):
             "services": services,
             "cases": cases,
             "reviews": reviews,
-            "doctor": doctor,
+
+            "doctor": doctors,     
+            "doctors": doctors,    
+
+            "settings": settings,
+            "stats": stats,
+            "results": results,
         },
     )
 
@@ -37,8 +61,8 @@ def reviews_page(request):
 
 
 def doctor_page(request):
-    doctor = DoctorProfile.objects.order_by("-id").first()
-    return render(request, "doctor.html", {"doctor": doctor})
+    doctors = DoctorProfile.objects.order_by("-id")
+    return render(request, "doctor.html", {"doctors": doctors})
 
 
 def contacts_page(request):

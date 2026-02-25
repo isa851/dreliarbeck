@@ -5,6 +5,7 @@ from apps.pages.models import (
     DoctorProfile,
     Case, CaseImage,
     Review,
+    Result,
 )
 
 admin.site.register(SiteSettings)
@@ -12,7 +13,7 @@ admin.site.register(HomePage)
 admin.site.register(HomeStat)
 admin.site.register(HomeFeature)
 admin.site.register(Service)
-
+admin.site.register(Result)
 @admin.register(DoctorProfile)
 class DoctorProfileAdmin(admin.ModelAdmin):
     fields = ("name", "role", "description", "photo")

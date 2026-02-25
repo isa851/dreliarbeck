@@ -1,0 +1,43 @@
+{% load static %}
+
+<header class="header" id="header">
+  <div class="header__inner">
+    <a href="{% url 'index' %}" class="logo">
+      <span class="logo__icon"><i class="fa-solid fa-tooth"></i></span>
+      Dr<span class="logo__dot">.</span> Eliyar
+    </a>
+
+    <nav class="nav">
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="{% url 'doctor' %}" class="nav__link">О клинике</a></li>
+        <li><a href="{% url 'services' %}" class="nav__link">Услуги</a></li>
+        <li><a href="{% url 'tour' %}" class="nav__link">360° тур</a></li>
+        <li><a href="{% url 'cases' %}" class="nav__link">Кейсы</a></li>
+        <li><a href="{% url 'reviews' %}" class="nav__link">Отзывы</a></li>
+        <li><a href="{% url 'contacts' %}" class="nav__link">Контакты</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <label class="toggle" id="fearToggle">
+          <input type="checkbox" id="fearModeCheckbox">
+          <span class="toggle__track"></span>
+          <span class="toggle__label"><i class="fa-regular fa-face-frown"></i> Я боюсь</span>
+        </label>
+        <a href="{% url 'contacts' %}#booking" class="btn btn--primary btn--sm">Записаться</a>
+      </div>
+
+      <button class="nav__burger" id="burgerBtn" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="{% url 'doctor' %}" class="mobile-menu__link">О клинике</a>
+  <a href="{% url 'services' %}" class="mobile-menu__link">Услуги</a>
+  <a href="{% url 'tour' %}" class="mobile-menu__link">360° тур</a>
+  <a href="{% url 'cases' %}" class="mobile-menu__link">Кейсы</a>
+  <a href="{% url 'reviews' %}" class="mobile-menu__link">Отзывы</a>
+  <a href="{% url 'contacts' %}" class="mobile-menu__link">Контакты</a>
+</div>

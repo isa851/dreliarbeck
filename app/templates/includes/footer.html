@@ -1,0 +1,57 @@
+{% load static %}
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="{% url 'index' %}" class="logo">
+          <span class="logo__icon"><i class="fa-solid fa-tooth"></i></span>
+          Dr<span class="logo__dot">.</span> Eliyar
+        </a>
+        <p>Стоматологический центр премиум-класса в Бишкеке. Ваша улыбка — наша гордость.</p>
+
+        <div class="footer__socials">
+          <a href="{{ settings.instagram }}" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="{{ settings.whatsapp }}" class="footer__social-link" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="{{ settings.telegram }}" class="footer__social-link" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="{{ settings.youtube }}" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer__title">Навигация</div>
+        <ul class="footer__links">
+          <li><a href="{% url 'index' %}">Главная</a></li>
+          <li><a href="{% url 'services' %}">Услуги</a></li>
+          <li><a href="{% url 'doctor' %}">О клинике</a></li>
+          <li><a href="{% url 'cases' %}">Кейсы</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer__title">Пациентам</div>
+        <ul class="footer__links">
+          <li><a href="{% url 'reviews' %}">Отзывы</a></li>
+          <li><a href="{% url 'tour' %}">360° тур</a></li>
+          <li><a href="{% url 'contacts' %}">Контакты</a></li>
+          <li><a href="{% url 'contacts' %}#booking">Записаться</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer__title">Контакты</div>
+        <ul class="footer__links">
+          <li><a href="tel:{{ settings.phone }}"><i class="fa-solid fa-phone"></i> {{ settings.phone }}</a></li>
+          <li><i class="fa-solid fa-location-dot"></i> {{ settings.address }}</li>
+          <li><i class="fa-regular fa-clock"></i> Пн–Пт: {{ settings.weekdays }}</li>
+          <li><i class="fa-regular fa-clock"></i> Сб: {{ settings.weekends }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© 2026 Dr. Eliyar — Все права защищены</span>
+      <span>Сделано с <i class="fa-solid fa-heart" style="color:#ef4444;"></i> в Бишкеке</span>
+    </div>
+  </div>
+</footer>
