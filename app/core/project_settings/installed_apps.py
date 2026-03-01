@@ -19,4 +19,9 @@ INSTALLED_APPS = [
     # Local apps
     "apps.pages",
     "apps.contacts",
+    "apps.services",
+    "apps.tur",
+    "apps.cases",
+    "apps.reviews",
+    "apps.aboutTheClinic",
 ]

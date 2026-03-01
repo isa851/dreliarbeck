@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from apps.pages.models import (
     HomePage,
-    Service,
     Case,
     Review,
     DoctorProfile,
@@ -9,46 +8,50 @@ from apps.pages.models import (
     HomeStat,
     Result,
 )
+from apps.services.models import ServicesHome
 
 
 def index_page(request):
-    index = HomePage.objects.order_by("-id").first()
+    home = HomePage.objects.order_by("-id").first()
 
-    services = Service.objects.filter(is_active=True).order_by("order")
+    services_home = ServicesHome.objects.all()
+
     cases = Case.objects.filter(is_active=True).order_by("order")[:6]
     reviews = Review.objects.filter(is_active=True).order_by("order")[:6]
-
-    results = Result.objects.order_by("order")
-    doctors = DoctorProfile.objects.order_by("-id")[:4]
-
-    results = Result.objects.order_by("-id")     
+    results = Result.objects.order_by("-id")
+    doctors = DoctorProfile.objects.all()[:4]
     settings = SiteSettings.objects.order_by("-id").first()
+    stats = HomeStat.objects.filter(home=home).order_by("order") if home else []
 
-    stats = HomeStat.objects.filter(home=index).order_by("order") if index else []
+    context = {
+        "index": home,
+        "services_home": services_home,
+        "cases": cases,
+        "reviews": reviews,
+        "doctors": doctors,
+        "settings": settings,
+        "stats": stats,
+        "results": results,
+    }
 
-    return render(
-        request,
-        "index.html",
-        {
-            "index": index,
-            "services": services,
-            "cases": cases,
-            "reviews": reviews,
+    return render(request, "index.html", context)
 
-            "doctor": doctors,     
-            "doctors": doctors,    
-
-            "settings": settings,
-            "stats": stats,
-            "results": results,
-        },
+def doctor_page(request):
+    about_the_clinic = (
+        AboutTheClinic.objects
+        .prefetch_related(
+            "philosophies",
+            "interiors",
+            "certificates",
+        )
+        .order_by("-id")
+        .first()
     )
 
-
-def services_page(request):
-    services = Service.objects.filter(is_active=True).order_by("order")
-    return render(request, "services.html", {"services": services})
-
+    return render(request, "doctor.html", {
+        # "index": index,
+        "about_the_clinic": about_the_clinic
+    })
 
 def cases_page(request):
     cases = Case.objects.filter(is_active=True).order_by("order")
@@ -58,11 +61,6 @@ def cases_page(request):
 def reviews_page(request):
     reviews = Review.objects.filter(is_active=True).order_by("order")
     return render(request, "reviews.html", {"reviews": reviews})
-
-
-def doctor_page(request):
-    doctors = DoctorProfile.objects.order_by("-id")
-    return render(request, "doctor.html", {"doctors": doctors})
 
 
 def contacts_page(request):

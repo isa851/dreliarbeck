@@ -49,7 +49,6 @@
         </div>
     </section>
 
-    <!-- ====== TRUST CARDS ====== -->
    <!-- ====== TRUST CARDS ====== -->
 <section class="section">
   <div class="container">
@@ -71,30 +70,52 @@
 </section>
 
     <!-- ====== SERVICES PREVIEW ====== -->
-    <section class="section section--alt">
-        <div class="container">
-            <div class="section__header reveal">
-                <h2>{{ index.services_title }}</h2>
-                <p>{{ index.services_subtitle }}</p>
-            </div>
-            <div class="grid grid--3 reveal-stagger">
-                {% for service in services %}
-                <div class="card">
-                    <div class="card__img">
-                        <img src="{{ service.icon.url }}"
-                            alt="Имплантация зубов" loading="lazy">
-                    </div>
-                    <div class="card__title">{{ service.title }}</div>
-                    <div class="card__text">{{ service.description }}</div>
-                    <a href="{% url 'services' %}" class="btn btn--ghost" style="margin-top:var(--space-md);">Подробнее <i
-                            class="fa-solid fa-arrow-right"></i></a>
-                </div>
-                {% endfor %}              
-               
-            </div>
-        </div>
-    </section>
+<section class="section section--alt">
+    <div class="container">
 
+        <div class="section__header">
+            <h2>{{ index.services_title }}</h2>
+            <p>{{ index.services_subtitle }}</p>
+        </div>
+
+        <div class="grid grid--3">
+
+            {% for service in services_home %}
+            <div class="card">
+
+                <div class="card__img">
+                    {% if service.photo %}
+                        <img src="{{ service.photo.url }}"
+                             alt="{{ service.title }}"
+                             loading="lazy">
+                    {% else %}
+                        <img src="https://via.placeholder.com/600x400"
+                             alt="Service">
+                    {% endif %}
+                </div>
+
+                <div class="card__title">
+                    {{ service.title }}
+                </div>
+
+                <div class="card__text">
+                    {{ service.description }}
+                </div>
+
+                <a href="{% url 'services' %}"
+                   class="btn btn--ghost"
+                   style="margin-top:20px;">
+                    Подробнее
+                </a>
+
+            </div>
+            {% empty %}
+                <p>Услуги пока не добавлены</p>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
     <!-- ====== OUR TEAM ====== -->
  <section class="section">
   <div class="container">

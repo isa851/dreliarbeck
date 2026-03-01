@@ -33,6 +33,7 @@ class HomePage(TimeStampedModel):
     doctor_patients = models.IntegerField(blank=True, null=True, verbose_name="Количество пациентов")
     doctor_experience = models.IntegerField(blank=True, null=True, verbose_name="Опыт работы")
     doctor_courses = models.IntegerField(blank=True, null=True, verbose_name="Количество курсов")
+    doctor_recommend = models.IntegerField(blank=True, null=True, verbose_name="Количество рекомендаций")
 
     result_title = models.CharField(max_length=255, blank=True, verbose_name="Заголовок результата")
     result_subtitle = models.CharField(max_length=255, blank=True, verbose_name="Подзаголовок результата")
