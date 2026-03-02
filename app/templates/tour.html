@@ -7,10 +7,8 @@
         <div class="container">
             <div class="breadcrumbs"><a href="{% url 'index' %}">Главная</a><span class="breadcrumbs__sep">/</span><span>360°
                     тур</span></div>
-            <h1>Виртуальный тур по клинике</h1>
-            <p>Исследуйте нашу клинику виртуально — от ресепшн до хирургического кабинета</p>
-            <p class="calm-text" data-calm><i class="fa-solid fa-heart" style="color:var(--color-calm-accent);"></i>
-                Знакомство с пространством до визита поможет вам чувствовать себя увереннее и спокойнее.</p>
+            <h1>{{ tur_banner.title }}</h1>
+            <p>{{ tur_banner.description }}</p>
         </div>
     </section>
 
@@ -56,36 +54,27 @@
     <section class="section section--alt">
         <div class="container">
             <div class="section__header reveal">
-                <h2>Что внутри клиники</h2>
-                <p>Каждая зона спроектирована для вашего комфорта</p>
+                <h2>{{ tur_banner.title_clinik }}</h2>
+                <p>{{ tur_banner.description_clinik }}</p>
             </div>
             <div class="grid grid--3 reveal-stagger">
+                {% for item in tur_clinik %}
                 <div class="card">
-                    <div class="card__icon"><i class="fa-solid fa-couch"></i></div>
-                    <div class="card__title">Уютная зона ожидания</div>
-                    <div class="card__text">Мягкие кресла, ароматный кофе и Wi-Fi. Ожидание — тоже часть приятного
-                        опыта.</div>
+                    <div class="card__icon">
+                        <img src="{{ item.icon.url }}" alt="{{ item.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="card__title">{{ item.title }}</div>
+                    <div class="card__text">{{ item.description }}</div>
                 </div>
-                <div class="card">
-                    <div class="card__icon"><i class="fa-solid fa-desktop"></i></div>
-                    <div class="card__title">Современные кабинеты</div>
-                    <div class="card__text">Каждый кабинет оснащён микроскопом, монитором для пациента и удобным
-                        креслом.</div>
-                </div>
-                <div class="card">
-                    <div class="card__icon"><i class="fa-solid fa-pump-medical"></i></div>
-                    <div class="card__title">Стерилизационная</div>
-                    <div class="card__text">Автоклав класса B, ультразвуковая мойка. Полный цикл стерилизации по
-                        европейским стандартам.</div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
 
     <section class="section cta-section">
         <div class="container reveal">
-            <h2>Хотите увидеть клинику лично?</h2>
-            <p>Запишитесь на бесплатную консультацию — мы покажем вам всё и ответим на любые вопросы.</p>
+            <h2>{{ tur_banner.record_title }}</h2>
+            <p>{{ tur_banner.record_description }}</p>
             <a href="{% url 'contacts' %}#booking" class="btn btn--primary btn--lg">Записаться на визит</a>
         </div>
     </section>

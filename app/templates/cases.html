@@ -8,8 +8,8 @@
         <div class="container">
             <div class="breadcrumbs"><a href="{% url 'index' %}">Главная</a><span
                     class="breadcrumbs__sep">/</span><span>Кейсы</span></div>
-            <h1>Результаты нашей работы</h1>
-            <p>Каждый кейс — это реальная история восстановления улыбки. Двигайте ползунок, чтобы увидеть разницу.</p>
+            <h1>{{ banner.title }}</h1>
+            <p>{{ banner.description }}</p>
         </div>
     </section>
 
@@ -25,187 +25,75 @@
 
     <section class="section">
         <div class="container">
-            <!-- Case 1 — Виниры -->
-            <div class="case-block reveal">
-                <div class="case-block__visual">
-                    <div class="ba-container" data-ba-slider>
-                        <div class="ba-before"><img
-                                src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=700&h=400&fit=crop&q=80"
-                                alt="До — виниры" loading="lazy"></div>
-                        <div class="ba-after"><img
-                                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=700&h=400&fit=crop&q=80"
-                                alt="После — виниры" loading="lazy"></div>
-                        <div class="ba-handle"></div>
-                        <span class="case-card__label case-card__label--before">До</span>
-                        <span class="case-card__label case-card__label--after">После</span>
-                    </div>
-                </div>
-                <div class="case-block__info">
-                    <span class="badge badge--accent">Виниры E-max</span>
-                    <h3>Полная эстетическая реставрация улыбки</h3>
-                    <p>Пациентка обратилась с жалобами на неровный цвет и форму зубов. Было установлено 10 керамических
-                        виниров E-max, которые полностью воссоздали естественную белоснежную улыбку.</p>
-                    <div class="case-block__meta">
-                        <span><i class="fa-regular fa-clock"></i> Срок: 2 недели</span>
-                        <span><i class="fa-solid fa-tooth"></i> 10 виниров</span>
-                        <span><i class="fa-solid fa-star"></i> Результат: 5/5</span>
-                    </div>
-                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Хочу так же</a>
-                </div>
-            </div>
 
-            <!-- Case 2 — Имплантация -->
-            <div class="case-block case-block--reverse reveal">
-                <div class="case-block__visual">
-                    <div class="ba-container" data-ba-slider>
-                        <div class="ba-before"><img
-                                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=700&h=400&fit=crop&q=80"
-                                alt="До — имплантация" loading="lazy"></div>
-                        <div class="ba-after"><img
-                                src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=700&h=400&fit=crop&q=80"
-                                alt="После — имплантация" loading="lazy"></div>
-                        <div class="ba-handle"></div>
-                        <span class="case-card__label case-card__label--before">До</span>
-                        <span class="case-card__label case-card__label--after">После</span>
-                    </div>
-                </div>
-                <div class="case-block__info">
-                    <span class="badge badge--accent">Имплантация</span>
-                    <h3>Восстановление жевательных зубов</h3>
-                    <p>Пациент потерял 3 жевательных зуба. Мы установили 3 имплантата Straumann и коронки из диоксида
-                        циркония. Полное восстановление функции жевания за 3 месяца.</p>
-                    <div class="case-block__meta">
-                        <span><i class="fa-regular fa-clock"></i> Срок: 3 месяца</span>
-                        <span><i class="fa-solid fa-tooth"></i> 3 имплантата</span>
-                        <span><i class="fa-solid fa-star"></i> Результат: 5/5</span>
-                    </div>
-                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Хочу так же</a>
-                </div>
-            </div>
+            {% for case in cases %}
+            <div class="case-block {% if forloop.counter|divisibleby:2 %}case-block--reverse{% endif %} reveal">
 
-            <!-- Case 3 — Отбеливание -->
-            <div class="case-block reveal">
+                <!-- Картинка -->
                 <div class="case-block__visual">
                     <div class="ba-container" data-ba-slider>
-                        <div class="ba-before"><img
-                                src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=700&h=400&fit=crop&q=80"
-                                alt="До — отбеливание" loading="lazy"></div>
-                        <div class="ba-after"><img
-                                src="https://images.unsplash.com/photo-1581585095728-17dfddf2acd8?w=700&h=400&fit=crop&q=80"
-                                alt="После — отбеливание" loading="lazy"></div>
-                        <div class="ba-handle"></div>
-                        <span class="case-card__label case-card__label--before">До</span>
-                        <span class="case-card__label case-card__label--after">После</span>
-                    </div>
-                </div>
-                <div class="case-block__info">
-                    <span class="badge badge--accent">Отбеливание Zoom</span>
-                    <h3>Профессиональное отбеливание на 6 тонов</h3>
-                    <p>Пациентка хотела более белую улыбку к свадьбе. Провели профессиональную чистку Air-Flow и
-                        отбеливание Zoom 4 за одно посещение. Результат — улыбка мечты за 1 день.</p>
-                    <div class="case-block__meta">
-                        <span><i class="fa-regular fa-clock"></i> Срок: 1 день</span>
-                        <span><i class="fa-solid fa-tooth"></i> Все зубы</span>
-                        <span><i class="fa-solid fa-star"></i> Результат: 5/5</span>
-                    </div>
-                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Хочу так же</a>
-                </div>
-            </div>
 
-            <!-- Case 4 — Коронки -->
-            <div class="case-block case-block--reverse reveal">
-                <div class="case-block__visual">
-                    <div class="ba-container" data-ba-slider>
-                        <div class="ba-before"><img
-                                src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=700&h=400&fit=crop&q=80"
-                                alt="До — коронки" loading="lazy"></div>
-                        <div class="ba-after"><img
-                                src="https://images.unsplash.com/photo-1612776572997-76cc42e058c3?w=700&h=400&fit=crop&q=80"
-                                alt="После — коронки" loading="lazy"></div>
-                        <div class="ba-handle"></div>
-                        <span class="case-card__label case-card__label--before">До</span>
-                        <span class="case-card__label case-card__label--after">После</span>
-                    </div>
-                </div>
-                <div class="case-block__info">
-                    <span class="badge badge--accent">Коронки Zirconia</span>
-                    <h3>Реставрация передних зубов коронками</h3>
-                    <p>Старые металлокерамические коронки потемнели и выглядели неестественно. Заменили на 4 коронки из
-                        диоксида циркония — идеальная эстетика и прочность.</p>
-                    <div class="case-block__meta">
-                        <span><i class="fa-regular fa-clock"></i> Срок: 10 дней</span>
-                        <span><i class="fa-solid fa-tooth"></i> 4 коронки</span>
-                        <span><i class="fa-solid fa-star"></i> Результат: 5/5</span>
-                    </div>
-                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Хочу так же</a>
-                </div>
-            </div>
+                        <div class="ba-before">
+                            <img src="{{ case.imageOne.url }}"
+                                alt="До — {{ case.title }}"
+                                loading="lazy">
+                        </div>
 
-            <!-- Case 5 — Ортодонтия -->
-            <div class="case-block reveal">
-                <div class="case-block__visual">
-                    <div class="ba-container" data-ba-slider>
-                        <div class="ba-before"><img
-                                src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=700&h=400&fit=crop&q=80"
-                                alt="До — элайнеры" loading="lazy"></div>
-                        <div class="ba-after"><img
-                                src="https://images.unsplash.com/photo-1607990281513-2c110a25e43c?w=700&h=400&fit=crop&q=80"
-                                alt="После — элайнеры" loading="lazy"></div>
-                        <div class="ba-handle"></div>
-                        <span class="case-card__label case-card__label--before">До</span>
-                        <span class="case-card__label case-card__label--after">После</span>
-                    </div>
-                </div>
-                <div class="case-block__info">
-                    <span class="badge badge--accent">Элайнеры</span>
-                    <h3>Коррекция прикуса без брекетов</h3>
-                    <p>Пациентка стеснялась неровных зубов. Предложили прозрачные элайнеры — незаметное лечение во время
-                        работы. За 8 месяцев зубы встали в идеально ровный ряд.</p>
-                    <div class="case-block__meta">
-                        <span><i class="fa-regular fa-clock"></i> Срок: 8 месяцев</span>
-                        <span><i class="fa-solid fa-tooth"></i> 14 кап</span>
-                        <span><i class="fa-solid fa-star"></i> Результат: 5/5</span>
-                    </div>
-                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Хочу так же</a>
-                </div>
-            </div>
+                        <div class="ba-after">
+                            <img src="{{ case.imageTwo.url }}"
+                                alt="После — {{ case.title }}"
+                                loading="lazy">
+                        </div>
 
-            <!-- Case 6 — Комплексный кейс -->
-            <div class="case-block case-block--reverse reveal">
-                <div class="case-block__visual">
-                    <div class="ba-container" data-ba-slider>
-                        <div class="ba-before"><img
-                                src="https://images.unsplash.com/photo-1614859324967-effd61a0a05e?w=700&h=400&fit=crop&q=80"
-                                alt="До — комплексный кейс" loading="lazy"></div>
-                        <div class="ba-after"><img
-                                src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=700&h=400&fit=crop&q=80"
-                                alt="После — комплексный кейс" loading="lazy"></div>
                         <div class="ba-handle"></div>
                         <span class="case-card__label case-card__label--before">До</span>
                         <span class="case-card__label case-card__label--after">После</span>
+
                     </div>
                 </div>
+
+                <!-- Текст -->
                 <div class="case-block__info">
-                    <span class="badge badge--accent">Полная реабилитация</span>
-                    <h3>Комплексное восстановление: имплантация + виниры</h3>
-                    <p>Сложный кейс: отсутствующие зубы, кариес, проблемы с эстетикой. Провели санацию, установили 2
-                        имплантата и 8 виниров. Результат — полностью новая улыбка и уверенность в себе.</p>
+                    <span class="badge badge--accent">{{ case.type }}</span>
+
+                    <h3>{{ case.title }}</h3>
+
+                    <p>{{ case.description }}</p>
+
                     <div class="case-block__meta">
-                        <span><i class="fa-regular fa-clock"></i> Срок: 4 месяца</span>
-                        <span><i class="fa-solid fa-tooth"></i> 2 импл. + 8 виниров</span>
-                        <span><i class="fa-solid fa-star"></i> Результат: 5/5</span>
+                        <span>
+                            <i class="fa-regular fa-clock"></i>
+                            Срок: {{ case.term }}
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-tooth"></i>
+                            {{ case.quantity }}
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-star"></i>
+                            Результат: {{ case.result }}
+                        </span>
                     </div>
-                    <a href="contacts.html#booking" class="btn btn--primary btn--sm">Хочу так же</a>
+
+                    <a href="{% url 'contacts' %}#booking"
+                    class="btn btn--primary btn--sm">
+                        Хочу так же
+                    </a>
                 </div>
+
             </div>
+            {% endfor %}
+
         </div>
     </section>
 
     <section class="section cta-section section--alt">
         <div class="container reveal">
-            <h2>Хотите такой же результат?</h2>
-            <p>Запишитесь на бесплатную консультацию — мы составим индивидуальный план лечения.</p>
-            <a href="contacts.html#booking" class="btn btn--primary btn--lg">Записаться бесплатно</a>
+            <h2>{{ banner.title_record }}</h2>
+            <p>{{ banner.description_record }}</p>
+            <a href="{% url 'contacts' %}#booking" class="btn btn--primary btn--lg">Записаться бесплатно</a>
         </div>
     </section>
 

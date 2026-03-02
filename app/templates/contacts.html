@@ -9,8 +9,8 @@
         <div class="container">
             <div class="breadcrumbs"><a href="{% url 'index' %}">Главная</a><span
                     class="breadcrumbs__sep">/</span><span>Контакты</span></div>
-            <h1>Свяжитесь с нами</h1>
-            <p>Запишитесь на приём или задайте вопрос удобным способом</p>
+            <h1>{{ contacts_banner.title }}</h1>
+            <p>{{ contacts_banner.description }}</p>
         </div>
     </section>
 
@@ -22,34 +22,33 @@
                     <div class="card" style="padding:var(--space-xl);margin-bottom:var(--space-lg);">
                         <h3 style="margin-bottom:var(--space-lg);"><i class="fa-solid fa-location-dot"
                                 style="color:var(--color-primary-hover);"></i> Адрес</h3>
-                        <p style="font-size:18px;font-weight:600;">г. Бишкек, ул. Киевская 77</p>
-                        <p style="color:var(--color-text-secondary);">Ориентир — ТЦ «Дордой Плаза», 2 этаж, офис 201</p>
+                        <p style="font-size:18px;font-weight:600;">{{ contacts_info.addres }}</p>
+                        <p style="color:var(--color-text-secondary);">Ориентир — {{ contacts_info.landmark }}</p>
                     </div>
                     <div class="card" style="padding:var(--space-xl);margin-bottom:var(--space-lg);">
                         <h3 style="margin-bottom:var(--space-lg);"><i class="fa-regular fa-clock"
                                 style="color:var(--color-primary-hover);"></i> Часы работы</h3>
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-xs);">
-                            <span>Пн–Пт:</span><span style="font-weight:600;">09:00 – 20:00</span>
-                            <span>Суббота:</span><span style="font-weight:600;">10:00 – 18:00</span>
-                            <span>Воскресенье:</span><span style="color:var(--color-text-secondary);">Выходной</span>
+                            <span>Пн–Пт:</span><span style="font-weight:600;">{{ contacts_info.weekdays }}</span>
+                            <span>Суббота:</span><span style="font-weight:600;">{{ contacts_info.saturday }}</span>
+                            <span>Воскресенье:</span><span style="color:var(--color-text-secondary);">{{ contacts_info.sunday }}</span>
                         </div>
                     </div>
                     <div class="card" style="padding:var(--space-xl);margin-bottom:var(--space-lg);">
                         <h3 style="margin-bottom:var(--space-lg);"><i class="fa-solid fa-phone"
                                 style="color:var(--color-primary-hover);"></i> Телефон</h3>
-                        <a href="tel:+996555123456"
-                            style="font-size:24px;font-weight:700;color:var(--color-primary-hover);text-decoration:none;">+996
-                            (555) 12-34-56</a>
+                        <a href="tel:{{ contacts_info.phone }}"
+                            style="font-size:24px;font-weight:700;color:var(--color-primary-hover);text-decoration:none;">{{ contacts_info.phone }}</a>
                     </div>
                     <div class="card" style="padding:var(--space-xl);">
                         <h3 style="margin-bottom:var(--space-lg);"><i class="fa-solid fa-comments"
                                 style="color:var(--color-primary-hover);"></i> Мессенджеры</h3>
                         <div style="display:flex;gap:var(--space-md);flex-wrap:wrap;">
-                            <a href="#" class="btn btn--outline btn--sm"><i class="fa-brands fa-whatsapp"></i>
+                            <a href="{{ contacts_info.whatsapp }}" class="btn btn--outline btn--sm"><i class="fa-brands fa-whatsapp"></i>
                                 WhatsApp</a>
-                            <a href="#" class="btn btn--outline btn--sm"><i class="fa-brands fa-telegram"></i>
+                            <a href="{{ contacts_info.telegram }}" class="btn btn--outline btn--sm"><i class="fa-brands fa-telegram"></i>
                                 Telegram</a>
-                            <a href="#" class="btn btn--outline btn--sm"><i class="fa-brands fa-instagram"></i>
+                            <a href="{{ contacts_info.instagram }}" class="btn btn--outline btn--sm"><i class="fa-brands fa-instagram"></i>
                                 Instagram</a>
                         </div>
                     </div>

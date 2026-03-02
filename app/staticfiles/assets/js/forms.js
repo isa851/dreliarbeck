@@ -1,22 +1,18 @@
 /**
- * Dr. Eliyar — Chat Form & Booking Form
+ * Dr. Eliyar — Chat Form with Django POST
  */
+
+console.log("CHAT JS LOADED");
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ==========================================
-    // CHAT FORM (on index.html hero)
-    // ==========================================
     const chatBody = document.getElementById('chatBody');
     const chatInputArea = document.getElementById('chatInputArea');
     const chatInput = document.getElementById('chatInput');
     const chatSendBtn = document.getElementById('chatSendBtn');
 
-    if (!chatBody) return; // Only runs on pages with chat
+    if (!chatBody) return;
 
-    const fearMode = () => document.body.classList.contains('fear-mode');
-
-    // Chat scenario steps
     const steps = [
         {
             bot: 'Здравствуйте! 👋 Я помогу вам записаться. Что вас беспокоит?',
@@ -27,18 +23,18 @@ document.addEventListener('DOMContentLoaded', () => {
             options: ['Ближайшие дни', 'На этой неделе', 'На следующей неделе', 'Свой вариант']
         },
         {
-            bot: 'Скажите, вы боитесь стоматолога? Это абсолютно нормально — мы готовы к этому.',
+            bot: 'Скажите, вы боитесь стоматолога?',
             options: ['Да, немного боюсь', 'Нет, всё ок']
         },
         {
-            bot: 'Последний шаг! Как вас зовут?',
+            bot: 'Как вас зовут?',
             input: true,
             placeholder: 'Ваше имя'
         },
         {
-            bot: 'И ваш номер телефона — мы перезвоним:',
+            bot: 'Ваш номер телефона:',
             input: true,
-            placeholder: '+7 (___) ___-__-__'
+            placeholder: '+996 ___ ___ ___'
         }
     ];
 
@@ -53,130 +49,113 @@ document.addEventListener('DOMContentLoaded', () => {
         chatBody.scrollTop = chatBody.scrollHeight;
     }
 
+    function nextStep() {
+        currentStep++;
+
+        if (currentStep >= steps.length) {
+            finishChat();
+        } else {
+            setTimeout(showStep, 400);
+        }
+    }
+
     function addOptions(options) {
         const wrap = document.createElement('div');
         wrap.className = 'chat__options';
+
         options.forEach(opt => {
             const btn = document.createElement('button');
             btn.className = 'chat__option-btn';
             btn.textContent = opt;
+
             btn.addEventListener('click', () => {
-                selectOption(opt);
+                addMessage(opt, 'user');
+                userAnswers.push(opt);
                 wrap.remove();
+                nextStep();
             });
+
             wrap.appendChild(btn);
         });
+
         chatBody.appendChild(wrap);
         chatBody.scrollTop = chatBody.scrollHeight;
     }
 
-    function selectOption(value) {
-        addMessage(value, 'user');
-        userAnswers.push(value);
-        currentStep++;
-        setTimeout(() => showStep(), 500);
-    }
-
     function showStep() {
-        if (currentStep >= steps.length) {
-            finishChat();
-            return;
-        }
-
         const step = steps[currentStep];
-        let botText = step.bot;
-
-        // Fear mode extra text for fear question
-        if (currentStep === 2 && fearMode()) {
-            botText += '\n💚 Не переживайте — у нас есть специальный подход для тревожных пациентов.';
-        }
-
-        addMessage(botText, 'bot');
+        addMessage(step.bot, 'bot');
 
         if (step.options) {
             setTimeout(() => addOptions(step.options), 300);
+            chatInputArea.style.display = 'none';
         }
 
         if (step.input) {
             chatInputArea.style.display = 'flex';
-            chatInput.placeholder = step.placeholder || 'Введите ответ...';
+            chatInput.placeholder = step.placeholder;
             chatInput.value = '';
             chatInput.focus();
-        } else {
-            chatInputArea.style.display = 'none';
         }
     }
 
     function handleInputSend() {
-        const val = chatInput.value.trim();
-        if (!val) return;
+        const value = chatInput.value.trim();
+        if (!value) return;
+
+        addMessage(value, 'user');
+        userAnswers.push(value);
+
+        chatInput.value = '';
         chatInputArea.style.display = 'none';
-        selectOption(val);
+
+        nextStep();
     }
 
     function finishChat() {
-        chatInputArea.style.display = 'none';
-        let finalText = '✅ Спасибо! Мы получили вашу заявку. Администратор свяжется с вами в ближайшее время.';
-        if (fearMode()) {
-            finalText += '\n💚 Мы обязательно предупредим врача, чтобы он уделил вам особое внимание.';
-        }
-        addMessage(finalText, 'bot');
+
+        const payload = {
+            problem: userAnswers[0] || '',
+            date: userAnswers[1] || '',
+            fear: userAnswers[2] || '',
+            name: userAnswers[3] || '',
+            phone: userAnswers[4] || ''
+        };
+
+        fetch("/api/chat-booking/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                addMessage("✅ Спасибо! Мы получили вашу заявку. Скоро свяжемся с вами.", "bot");
+            } else {
+                addMessage("❌ Ошибка отправки. Попробуйте позже.", "bot");
+                console.log(data);
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            addMessage("❌ Ошибка соединения с сервером.", "bot");
+        });
     }
 
     if (chatSendBtn) {
         chatSendBtn.addEventListener('click', handleInputSend);
     }
+
     if (chatInput) {
         chatInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') handleInputSend();
+            if (e.key === 'Enter') {
+                handleInputSend();
+            }
         });
     }
 
-    // Start chat
-    setTimeout(() => showStep(), 600);
-
-    // ==========================================
-    // BOOKING FORM (on contacts.html)
-    // ==========================================
-    window.handleBookingSubmit = function (e) {
-        e.preventDefault();
-        const form = document.getElementById('bookingForm');
-        const success = document.getElementById('bookingSuccess');
-
-        // Simple validation
-        const name = document.getElementById('bName');
-        const phone = document.getElementById('bPhone');
-        let valid = true;
-
-        [name, phone].forEach(field => {
-            field.classList.remove('form-control--error');
-            const err = field.parentElement.querySelector('.form-error');
-            if (err) err.remove();
-        });
-
-        if (!name.value.trim()) {
-            name.classList.add('form-control--error');
-            const err = document.createElement('div');
-            err.className = 'form-error';
-            err.textContent = 'Введите ваше имя';
-            name.parentElement.appendChild(err);
-            valid = false;
-        }
-
-        if (!phone.value.trim() || phone.value.trim().length < 6) {
-            phone.classList.add('form-control--error');
-            const err = document.createElement('div');
-            err.className = 'form-error';
-            err.textContent = 'Введите корректный номер телефона';
-            phone.parentElement.appendChild(err);
-            valid = false;
-        }
-
-        if (!valid) return false;
-
-        // "Submit"
-        form.style.display = 'none';
-        success.style.display = 'block';
-        return false;
-    };
+    // старт чата
+    setTimeout(showStep, 600);
 });

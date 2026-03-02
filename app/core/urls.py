@@ -9,6 +9,10 @@ urlpatterns = [
     path("", include("apps.pages.urls")),
     path("", include("apps.aboutTheClinic.urls")),
     path("", include("apps.services.urls")),
+    path("", include("apps.tur.urls")),
+    path("", include("apps.cases.urls")),
+    path("", include("apps.reviews.urls")),
+    path("", include("apps.contacts.urls")),
 ]
 
 if settings.DEBUG:

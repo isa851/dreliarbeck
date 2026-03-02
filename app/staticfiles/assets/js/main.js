@@ -2,6 +2,7 @@
  * Dr. Eliyar — Main JS
  * Header scroll, burger menu, scroll reveal (IntersectionObserver)
  */
+console.log("MAIN JS LOADED");
 
 document.addEventListener('DOMContentLoaded', () => {
   // === Sticky Header ===
