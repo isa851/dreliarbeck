@@ -181,7 +181,7 @@ JAZZMIN_SETTINGS = {
 JAZZMIN_UI_TWEAKS = {
 
     # Светлая современная тема
-    "theme": "cerulean",
+    "theme": "white",
 
     # Отключаем тёмную
     "dark_mode_theme": None,
