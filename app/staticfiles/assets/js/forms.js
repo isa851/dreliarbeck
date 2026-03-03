@@ -159,3 +159,57 @@ document.addEventListener('DOMContentLoaded', () => {
     // старт чата
     setTimeout(showStep, 600);
 });
+
+/* ============================= */
+/* BOOKING FORM (Contacts page) */
+/* ============================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const bookingForm = document.getElementById("bookingForm");
+    if (!bookingForm) return;
+
+    console.log("BOOKING FORM CONNECTED");
+
+    bookingForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("bookName").value.trim();
+        const phone = document.getElementById("bookPhone").value.trim();
+        const service = document.getElementById("bookService").value;
+        const comment = document.getElementById("bookComment").value.trim();
+
+        if (!name || !phone) {
+            alert("Введите имя и телефон");
+            return;
+        }
+
+        fetch("/api/booking/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: name,
+                phone: phone,
+                service: service,
+                comment: comment
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("✅ Заявка успешно отправлена!");
+                bookingForm.reset();
+            } else {
+                alert("❌ Ошибка отправки");
+                console.log(data);
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert("❌ Ошибка соединения с сервером");
+        });
+    });
+
+});
