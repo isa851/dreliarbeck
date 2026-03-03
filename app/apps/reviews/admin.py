@@ -1,28 +1,26 @@
 from django.contrib import admin
-
-
-from apps.reviews.models import Review,ReviewBanner,VideoReview,ReviewStats
+from .models import Review, ReviewBanner, VideoReview, ReviewStats
 
 
 @admin.register(ReviewStats)
 class ReviewStatsAdmin(admin.ModelAdmin):
-    list_display = ["patients", "average_rating"]
-    search_fields = ["patients", "average_rating"]
+    list_display = ("patients", "average_rating", "recommend")
+    search_fields = ("patients",)
+
 
 @admin.register(VideoReview)
 class VideoReviewAdmin(admin.ModelAdmin):
-    list_display = ["title"]
-    search_fields = ["title"]
+    list_display = ("title",)
+    search_fields = ("title",)
+
 
 @admin.register(ReviewBanner)
 class ReviewBannerAdmin(admin.ModelAdmin):
-    list_display = ["title", "description"]
-    search_fields = ["title", "description"]
+    list_display = ("title",)
 
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ["author", "text_rating", "time"]
-    search_fields = ["author", "text_rating", "time"]
-    list_filter = ["time"]
-    
+    list_display = ("author", "text_rating", "time")
+    list_filter = ("time",)
+    search_fields = ("author",)

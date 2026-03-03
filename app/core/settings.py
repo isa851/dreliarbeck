@@ -105,35 +105,106 @@ SPECTACULAR_SETTINGS = {
 from core.project_settings.ckeditor import *
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# ======================================================
+# 🎨 IDEAL PRO ADMIN PANEL — DRELIAR CLINIC
+# ======================================================
 
-
-
-# ===============================
-# JAZZMIN ADMIN THEME
-# ===============================
 JAZZMIN_SETTINGS = {
-    "site_title": "Dreliar Admin",
-    "site_header": "Dr. Eliyar",
-    "site_brand": "Dreliar",
-    "welcome_sign": "Добро пожаловать в админку",
-    "copyright": "© Dreliar",
 
+    # -----------------------------
+    # Основное
+    # -----------------------------
+    "site_title": "Dreliar Admin",
+    "site_header": "Dr. Eliyar Clinic",
+    "site_brand": "Dreliar",
+    "welcome_sign": "Панель управления клиникой",
+    "copyright": "© Dreliar Clinic",
+
+    # -----------------------------
+    # Sidebar
+    # -----------------------------
     "show_sidebar": True,
     "navigation_expanded": True,
+    "sidebar_nav_compact_style": True,
 
+    # -----------------------------
+    # Группировка моделей
+    # -----------------------------
+    "order_with_respect_to": [
+        "aboutTheClinic",
+        "services",
+        "cases",
+        "reviews",
+        "contacts",
+        "pages",
+    ],
+
+    # -----------------------------
+    # Иконки
+    # -----------------------------
     "icons": {
-        "cms.SiteSettings": "fas fa-cog",
-        "cms.HomePage": "fas fa-home",
-        "cms.Service": "fas fa-tooth",
-        "cms.DoctorProfile": "fas fa-user-md",
-        "cms.Case": "fas fa-briefcase-medical",
-        "cms.Review": "fas fa-star",
+
+        # About clinic
+        "aboutTheClinic.AboutTheClinicBanner": "fas fa-image",
+        "aboutTheClinic.AboutTheClinicDoctor": "fas fa-user-md",
+        "aboutTheClinic.AboutTheClinicInterior": "fas fa-hospital",
+        "aboutTheClinic.AboutTheClinicOurTeam": "fas fa-users",
+        "aboutTheClinic.AboutTheClinicCertificates": "fas fa-certificate",
+        "aboutTheClinic.AboutTheClinicPhilosophy": "fas fa-lightbulb",
+
+        # Services
+        "services.Services": "fas fa-tooth",
+        "services.ServicesBanner": "fas fa-layer-group",
+
+        # Cases
+        "cases.Cases": "fas fa-briefcase-medical",
+        "cases.CasesBanner": "fas fa-images",
+
+        # Reviews
+        "reviews.Review": "fas fa-star",
+        "reviews.VideoReview": "fas fa-video",
+
+        # Contacts
+        "contacts.Booking": "fas fa-calendar-check",
+        "contacts.ContactsInfo": "fas fa-map-marker-alt",
+
+        # Pages
+        "pages.HomePage": "fas fa-home",
+        "pages.SiteSettings": "fas fa-cog",
     },
 }
 
+# ======================================================
+# 🎨 UI STYLE — PREMIUM MEDICAL
+# ======================================================
+
 JAZZMIN_UI_TWEAKS = {
-    "theme": "darkly",
-    "navbar": "navbar-dark",
-    "sidebar": "sidebar-dark-primary",
-    "accent": "accent-primary",
+
+    # Светлая современная тема
+    "theme": "cerulean",
+
+    # Отключаем тёмную
+    "dark_mode_theme": None,
+
+    # Верхняя панель
+    "navbar": "navbar-light navbar-white",
+
+    # Боковое меню
+    "sidebar": "sidebar-light-primary",
+
+    # Акцент (медицинский голубой)
+    "accent": "accent-info",
+
+    # Кнопки
+    "button_classes": {
+        "primary": "btn btn-info",
+        "secondary": "btn btn-outline-secondary",
+        "info": "btn btn-info",
+        "warning": "btn btn-warning",
+        "danger": "btn btn-danger",
+        "success": "btn btn-success",
+    },
+
+    # Компактность
+    "sidebar_nav_child_indent": True,
 }
