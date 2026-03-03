@@ -1,6 +1,6 @@
 INSTALLED_APPS = [
     # Django
-    'jazzmin',
+    # 'jazzmin',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
